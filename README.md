@@ -2,6 +2,8 @@
 
 Seasonal themes for [Tessera](https://github.com/brunogutierre/Tessera), the Angular design system: festive palettes and decorations (Christmas and Halloween first) that restyle every Tessera component from the outside, without forking it.
 
+**Storybook:** https://brunogutierre.github.io/TesseraThemes/
+
 > **Status:** under construction. The workspace and the extension foundation come first; the themes follow.
 
 ## Goal
@@ -16,6 +18,8 @@ Show how a design system is extended by a separate package: new themes registere
 | Framework       | Angular 22 (standalone, signals, OnPush)                                                                |
 | Styling         | Plain CSS: custom properties, `light-dark()`, cascade layers, SVG masks                                 |
 | Packaging       | ng-packagr (Angular Package Format), single entry point plus `styles/*`                                 |
+| Documentation   | Storybook 10 (`@storybook/angular-vite`), deployed to GitHub Pages                                      |
+| Story tests     | `@storybook/addon-vitest` + `@storybook/addon-a11y` (axe, WCAG 2.2 AA), one run per theme and mode      |
 | Unit tests      | Vitest via `@angular/build:unit-test`, browser mode in headless Chromium                                |
 | Lint and format | angular-eslint (type-checked rules), Prettier                                                           |
 | Package checks  | publint, `@arethetypeswrong/cli`, `npm pack --dry-run`                                                  |
@@ -34,6 +38,7 @@ Show how a design system is extended by a separate package: new themes registere
 - **An extension, not a fork.** Tessera stays the single source of behavior and accessibility; this package only adds themes and visuals, so every Tessera fix reaches it with a version bump.
 - **No wrapper components.** `<tt-button>` around `<button tes-button>` would break Tessera's "native stays native" rule and duplicate every input. Decoration attaches to the components Tessera already renders.
 - **Only public hooks.** Selectors use host classes, state attributes, `data-tes-part` and component tokens, which Tessera versions as its styling API (0.2.0). Internal class names are never targeted, so a Tessera refactor cannot break a theme silently.
+- **Storybook pre-bundles Angular and Tessera together.** Tessera comes from `node_modules`, so Vite would otherwise serve `@angular/core` twice (once pre-bundled, once raw) and dependency injection fails with NG0203. `vitest.storybook.config.mts` lists both in `optimizeDeps.include`.
 - **Own prefix (`tt`).** Components, directives, CSS variables and attributes use `tt`; themes still register under Tessera's `data-tes-theme`, so one switch drives both.
 
 ## Development
@@ -45,6 +50,9 @@ npm run test:coverage  # with the 80% coverage gate
 npm run lint
 npm run format:check
 npm run check:package  # build, publint, attw, npm pack --dry-run
+npm run storybook      # http://localhost:6006
+npm run test:stories   # every story, axe included, once per theme and mode
+npm run test:stories -- enterprise-dark   # one combination
 ```
 
 ## License

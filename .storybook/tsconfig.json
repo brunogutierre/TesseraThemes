@@ -1,0 +1,11 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node"],
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true
+  },
+  "exclude": ["../projects/brunogutierre/tessera-themes/src/**/*.spec.ts"],
+  "include": ["../projects/brunogutierre/tessera-themes/src/**/*.ts", "./*.ts"],
+  "files": []
+}
