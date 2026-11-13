@@ -1,0 +1,27 @@
+/*
+ * Christmas decoration, shared parts. The art lives in ../../art/christmas/*.svg (see
+ * docs/art/christmas.md); every pseudo-element follows the decoration contract.
+ */
+@layer tessera-themes.decor {
+  /* A faint sparkle pattern on the themed background, veiled so text keeps its contrast */
+  @media screen and (forced-colors: none) {
+    [data-tes-theme='christmas'] {
+      background-image:
+        linear-gradient(
+          color-mix(in oklch, var(--tes-color-bg) 86%, transparent),
+          color-mix(in oklch, var(--tes-color-bg) 86%, transparent)
+        ),
+        url('../../art/christmas/pattern.svg');
+      background-size: auto, 10rem;
+    }
+  }
+
+  /*
+   * Hosts that carry a sticker become its containing block; this never moves them. Buttons are
+   * left out: Tessera already makes them relative, and some components position a button
+   * absolutely (the date picker's calendar button), which this layer would override.
+   */
+  [data-tes-theme='christmas'] :is(.tes-avatar, .tes-badge, .tes-tag) {
+    position: relative;
+  }
+}
