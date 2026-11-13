@@ -39,7 +39,35 @@ Show how a design system is extended by a separate package: new themes registere
 - **No wrapper components.** `<tt-button>` around `<button tes-button>` would break Tessera's "native stays native" rule and duplicate every input. Decoration attaches to the components Tessera already renders.
 - **Only public hooks.** Selectors use host classes, state attributes, `data-tes-part` and component tokens, which Tessera versions as its styling API (0.2.0). Internal class names are never targeted, so a Tessera refactor cannot break a theme silently.
 - **Storybook pre-bundles Angular and Tessera together.** Tessera comes from `node_modules`, so Vite would otherwise serve `@angular/core` twice (once pre-bundled, once raw) and dependency injection fails with NG0203. `vitest.storybook.config.mts` lists both in `optimizeDeps.include`.
+- **Cascade layers after Tessera's.** `tessera-themes.css` declares `tessera-themes.tokens`, `.themes` and `.decor`, so the themes override Tessera's components, decoration overrides the themes, and any unlayered app CSS still wins. A spec checks that order.
+- **Theme names through module augmentation.** The package augments Tessera's `TesThemeRegistry` and registers the same names at runtime with `provideSeasonalThemes()`. A type test keeps the two lists equal, and a consumer build confirms the augmentation survives in the published typings.
+- **`ttDecor` only writes an attribute.** The directive sets a typed `data-tt-decor` and adds no markup; the motif names live in `TtDecorRegistry`, which each theme extends. Styling stays in CSS, where the theme is already known.
 - **Own prefix (`tt`).** Components, directives, CSS variables and attributes use `tt`; themes still register under Tessera's `data-tes-theme`, so one switch drives both.
+
+## Usage
+
+```bash
+npm install @brunogutierre/tessera @brunogutierre/tessera-themes
+```
+
+1. Add both stylesheets to the `styles` of your `angular.json`, Tessera's first:
+   `node_modules/@brunogutierre/tessera/styles/tessera.css`, then
+   `node_modules/@brunogutierre/tessera-themes/styles/tessera-themes.css`.
+2. Register the themes next to Tessera:
+
+```ts
+bootstrapApplication(App, {
+  providers: [provideTessera({ theme: 'christmas' }), provideSeasonalThemes()],
+});
+```
+
+Importing the package also adds `christmas` and `halloween` to Tessera's theme names, so `theme.set('halloween')` and `tesTheme="christmas"` type-check.
+
+Pick a motif for one component, or turn a theme's decoration off, with `ttDecor`:
+
+```html
+<tes-card ttDecor="none">…</tes-card>
+```
 
 ## Development
 

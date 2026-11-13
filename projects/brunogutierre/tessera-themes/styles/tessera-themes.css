@@ -1,0 +1,7 @@
+/*
+ * Tessera Themes. Load it after @brunogutierre/tessera/styles/tessera.css.
+ *
+ * Every layer of this package is declared after Tessera's, so the themes and their decoration
+ * override Tessera, while an app's unlayered CSS still overrides both, without !important.
+ */
+@layer tessera-themes.tokens, tessera-themes.themes, tessera-themes.decor;
