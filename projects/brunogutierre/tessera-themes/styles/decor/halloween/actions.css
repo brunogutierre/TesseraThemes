@@ -1,0 +1,119 @@
+/* Halloween decoration: actions and display. */
+@layer tessera-themes.decor {
+  @scope ([data-tes-theme='halloween']) to ([data-tes-theme]:not([data-tes-theme='halloween'])) {
+    .tes-button:not(:where([data-tt-decor='none'], [data-tt-decor='none'] *)) {
+      --tes-button-radius: var(--tes-radius-full);
+    }
+
+    /* Buttons: a bat on primary, candy corn on secondary. Danger stays plain on purpose. */
+    .tes-button:is([data-variant='primary'], [data-variant='secondary'])::after {
+      --tt-sticker: url('../../art/halloween/bat.svg');
+      inset-block-start: -0.65rem;
+      inset-inline-end: 0.1rem;
+      inline-size: 1.7rem;
+      block-size: 1.1rem;
+      rotate: 12deg;
+    }
+
+    .tes-button[data-variant='secondary']::after {
+      --tt-sticker: url('../../art/halloween/candy-corn.svg');
+      rotate: 15deg;
+    }
+
+    .tes-button:is([data-size='sm'], [data-icon-only])::after {
+      inset-block-start: -0.5rem;
+      inline-size: 1.25rem;
+      block-size: 0.8rem;
+    }
+
+    /* Badges: a pumpkin on warnings, sparkles on the other solid badges */
+    .tes-badge:is([data-variant='solid'], [data-tone='warning'])::after {
+      --tt-sticker: url('../../art/halloween/sparkles.svg');
+      inset-block-start: -0.6rem;
+      inset-inline-end: 0;
+      inline-size: 0.95rem;
+      block-size: 0.95rem;
+    }
+
+    .tes-badge[data-tone='warning']::after {
+      --tt-sticker: url('../../art/halloween/pumpkin.svg');
+      rotate: 15deg;
+    }
+
+    /* Tags: a candy corn on the start corner */
+    .tes-tag::before {
+      --tt-sticker: url('../../art/halloween/candy-corn.svg');
+      inset-block-start: -0.55rem;
+      inset-inline-start: -0.5rem;
+      inline-size: 1.1rem;
+      block-size: 1.1rem;
+      rotate: -20deg;
+    }
+
+    /* Avatars: a witch hat, sized with the avatar; higher on small avatars to clear the initials */
+    .tes-avatar::after {
+      --tt-sticker: url('../../art/halloween/witch-hat.svg');
+      inset-block-start: -38%;
+      inset-inline-start: -18%;
+      inline-size: 95%;
+      aspect-ratio: 32 / 26;
+      rotate: -18deg;
+    }
+
+    .tes-avatar[data-size='sm']::after {
+      inset-block-start: -55%;
+    }
+
+    /* Stats: sparkles above the end of the label */
+    .tes-stat > [data-tes-part='label'] {
+      inline-size: fit-content;
+    }
+
+    .tes-stat > [data-tes-part='label']::after {
+      --tt-sticker: url('../../art/halloween/sparkles.svg');
+      inset-block-start: -0.95rem;
+      inset-inline-end: 0;
+      inline-size: 1rem;
+      block-size: 1rem;
+    }
+
+    /* Spinner: a pumpkin arc on a night track */
+    .tes-spinner > svg > [data-tes-part='track'] {
+      stroke: var(--tt-night);
+    }
+
+    .tes-spinner > svg > [data-tes-part='arc'] {
+      stroke: var(--tt-pumpkin);
+    }
+
+    /* Progress: a striped pumpkin bar on the primary tone, outlined so its end stays visible */
+    .tes-progress[data-tone='primary'] > [data-tes-part='track'] > [data-tes-part='bar'] {
+      background-image: var(--tt-decor-image, var(--tt-candy-stripe));
+      box-shadow: inset 0 0 0 1px var(--tt-pumpkin);
+    }
+
+    /* Skeleton: bones with a hint of night */
+    .tes-skeleton > [data-tes-part='bone'] {
+      background-color: color-mix(in oklch, var(--tt-night) 12%, var(--tes-color-neutral-subtle));
+    }
+
+    /*
+     * Breadcrumbs: Tessera's own separator becomes a little bat. Its "/" stays, only hidden, so the
+     * rule is limited to screens outside forced colors and to decorated subtrees.
+     */
+    @media screen and (forced-colors: none) {
+      .tes-breadcrumbs:not(:where([data-tt-decor='none'], [data-tt-decor='none'] *))
+        li
+        + li::before {
+        display: inline-block;
+        inline-size: 0.65rem;
+        block-size: 0.65rem;
+        overflow: hidden;
+        color: transparent;
+        background-color: var(--tt-night);
+        mask: var(--tt-decor-image, url('../../art/halloween/separator-bat.svg')) center / contain
+          no-repeat;
+      }
+    }
+  }
+}
