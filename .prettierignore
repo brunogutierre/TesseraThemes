@@ -1,0 +1,10 @@
+dist
+coverage
+node_modules
+.angular
+package-lock.json
+manual
+storybook-static
+playwright-report
+test-results
+visual/__screenshots__
