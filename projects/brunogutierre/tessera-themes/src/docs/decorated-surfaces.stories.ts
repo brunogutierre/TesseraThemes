@@ -83,11 +83,13 @@ export const Surfaces: StoryObj = {
     template: `
       <div class="sb-stack" style="max-inline-size: 48rem; gap: var(--tes-space-6)">
         <div class="sb-grid">
-          <tes-card><strong>Outlined</strong><p style="margin: 0">Snow on the top edge.</p></tes-card>
-          <tes-card variant="elevated"><strong>Elevated</strong><p style="margin: 0">Snow and holly.</p></tes-card>
-          <tes-card ttDecor="gift"><strong>Gift</strong><p style="margin: 0">A ribbon and a bow.</p></tes-card>
-          <tes-card ttDecor="stocking"><strong>Stocking</strong><p style="margin: 0">Hung on the corner.</p></tes-card>
-          <tes-card ttDecor="none"><strong>Plain</strong><p style="margin: 0">Decoration turned off.</p></tes-card>
+          <tes-card><strong>Outlined</strong><p style="margin: 0">Decorated top edge.</p></tes-card>
+          <tes-card variant="elevated"><strong>Elevated</strong><p style="margin: 0">Top edge and a sticker.</p></tes-card>
+          <tes-card ttDecor="gift"><strong>Gift</strong><p style="margin: 0">Christmas: a ribbon and a bow.</p></tes-card>
+          <tes-card ttDecor="stocking"><strong>Stocking</strong><p style="margin: 0">Christmas: hung on the corner.</p></tes-card>
+          <tes-card ttDecor="web"><strong>Web</strong><p style="margin: 0">Halloween: a cobweb and a spider.</p></tes-card>
+          <tes-card ttDecor="ghost"><strong>Ghost</strong><p style="margin: 0">Halloween: peeking over the edge.</p></tes-card>
+          <tes-card ttDecor="none"><strong>Plain</strong><p style="margin: 0">ttDecor="none": no decoration.</p></tes-card>
         </div>
         <tes-alert tone="info" heading="Holiday hours">Stores close at 6 pm on the 24th.</tes-alert>
         <tes-alert tone="success" heading="Order sent">Three gifts are on their way.</tes-alert>

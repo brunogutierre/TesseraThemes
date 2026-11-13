@@ -10,6 +10,10 @@ export interface TtDecorRegistry {
   gift: true;
   /** Christmas card: a stocking hanging on the corner. */
   stocking: true;
+  /** Halloween card: a cobweb in the corner and a hanging spider. */
+  web: true;
+  /** Halloween card: a ghost peeking over the top edge. */
+  ghost: true;
 }
 export type TtDecorName = Extract<keyof TtDecorRegistry, string>;
 

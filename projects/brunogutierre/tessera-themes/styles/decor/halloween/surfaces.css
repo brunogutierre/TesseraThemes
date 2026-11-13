@@ -1,0 +1,106 @@
+/* Halloween decoration: surfaces and overlays. */
+@layer tessera-themes.decor {
+  @scope ([data-tes-theme='halloween']) to ([data-tes-theme]:not([data-tes-theme='halloween'])) {
+    /* Cards: slime dripping from the top edge */
+    .tes-card::before {
+      --tt-sticker: url('../../art/halloween/slime.svg');
+      inset-block-start: -0.3rem;
+      inset-inline: 0.5rem;
+      block-size: 0.8rem;
+      background-position: top;
+      background-size: 2.5rem 100%;
+      background-repeat: repeat-x;
+    }
+
+    /* Elevated, web and ghost cards: a sticker standing on the top edge, clear of the
+       header actions below it */
+    .tes-card:is([data-variant='elevated'], [data-tt-decor='web'], [data-tt-decor='ghost'])::after {
+      --tt-sticker: url('../../art/halloween/pumpkin.svg');
+      inset-block-start: -1.4rem;
+      inset-inline-end: 1rem;
+      inline-size: 2.4rem;
+      block-size: 1.8rem;
+    }
+
+    /* Web: a cobweb in the top-start corner, instead of slime, and a spider hanging on the end */
+    .tes-card[data-tt-decor='web']::before {
+      --tt-sticker: url('../../art/halloween/web-corner.svg');
+      inset-block-start: -0.35rem;
+      inset-inline: -0.35rem auto;
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+      background-position: top left;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .tes-card[data-tt-decor='web']:dir(rtl)::before {
+      scale: -1 1;
+    }
+
+    .tes-card[data-tt-decor='web']::after {
+      --tt-sticker: url('../../art/halloween/spider.svg');
+      inset-block-start: 0;
+      inset-inline-end: 1.25rem;
+      inline-size: 1.15rem;
+      block-size: 1.35rem;
+      background-position: top;
+    }
+
+    /* Ghost: peeking over the top edge */
+    .tes-card[data-tt-decor='ghost']::after {
+      --tt-sticker: url('../../art/halloween/ghost.svg');
+      inset-block-start: -1.7rem;
+      inline-size: 1.8rem;
+      block-size: 2.1rem;
+      rotate: -8deg;
+    }
+
+    /* Alerts and toasts: a sticker per tone on the start corner (the icon side: the dismiss button
+       is at the end): ghost, cauldron, pumpkin, skull */
+    .tes-alert::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast']::after {
+      --tt-sticker: url('../../art/halloween/skull.svg');
+      inset-block-start: -0.85rem;
+      inset-inline-start: -0.6rem;
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+      rotate: -10deg;
+    }
+
+    .tes-alert[data-tone='info']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='info']::after {
+      --tt-sticker: url('../../art/halloween/ghost.svg');
+    }
+
+    .tes-alert[data-tone='success']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='success']::after {
+      --tt-sticker: url('../../art/halloween/cauldron.svg');
+    }
+
+    .tes-alert[data-tone='warning']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='warning']::after {
+      --tt-sticker: url('../../art/halloween/pumpkin.svg');
+    }
+
+    /* Dialogs: bunting along the top of the header */
+    .tes-dialog > [data-tes-part='header']::before {
+      --tt-sticker: url('../../art/halloween/bunting.svg');
+      inset-block-start: 0;
+      inset-inline: 0;
+      block-size: 0.75rem;
+      background-position: top;
+      background-size: 2.25rem 100%;
+      background-repeat: repeat-x;
+    }
+
+    /* Slime on the top edge of panels and tooltips: they scroll, so it is a background */
+    :is(.tes-menu, .tes-select, .tes-autocomplete, .tes-date-picker) [data-tes-part='panel'],
+    .tes-tooltip {
+      background-image: var(--tt-decor-image, url('../../art/halloween/slime.svg'));
+      background-position: top;
+      background-size: 2rem 0.5rem;
+      background-repeat: repeat-x;
+    }
+  }
+}
