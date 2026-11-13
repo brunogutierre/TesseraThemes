@@ -1,0 +1,127 @@
+/*
+ * Halloween theme: parchment by day and deep purple night by dark, pumpkin orange for actions,
+ * slime-green success, a candy-corn warning and a blood-red danger. Every color is declared once
+ * as `light-dark(<light>, <dark>)`, like Tessera's themes.
+ */
+@layer tessera-themes.themes {
+  [data-tes-theme='halloween'] {
+    /* Festive tokens, read by the decoration */
+    --tt-pumpkin: light-dark(oklch(0.6 0.17 50), oklch(0.74 0.17 55));
+    --tt-night: light-dark(oklch(0.35 0.12 300), oklch(0.62 0.15 300));
+    --tt-slime: light-dark(oklch(0.55 0.15 135), oklch(0.82 0.19 130));
+    --tt-bone: light-dark(oklch(0.97 0.015 85), oklch(0.93 0.02 85));
+
+    /* Surfaces and text */
+    --tes-color-bg: light-dark(oklch(0.96 0.02 75), oklch(0.17 0.035 300));
+    --tes-color-surface: light-dark(oklch(0.985 0.012 75), oklch(0.215 0.04 300));
+    --tes-color-surface-raised: light-dark(oklch(0.995 0.006 75), oklch(0.255 0.045 300));
+    --tes-color-surface-sunken: light-dark(oklch(0.93 0.022 75), oklch(0.145 0.03 300));
+    --tes-color-backdrop: light-dark(
+      color-mix(in oklch, oklch(0.2 0.05 300) 50%, transparent),
+      color-mix(in oklch, oklch(0.08 0.03 300) 72%, transparent)
+    );
+    --tes-color-text: light-dark(oklch(0.22 0.045 300), oklch(0.94 0.02 80));
+    --tes-color-text-muted: light-dark(oklch(0.45 0.045 300), oklch(0.77 0.04 300));
+    --tes-color-text-disabled: light-dark(oklch(0.68 0.025 300), oklch(0.5 0.035 300));
+    --tes-color-text-inverse: light-dark(oklch(0.97 0.015 80), oklch(0.2 0.04 300));
+    --tes-color-border: light-dark(oklch(0.87 0.025 70), oklch(0.33 0.045 300));
+    --tes-color-border-strong: light-dark(oklch(0.55 0.05 300), oklch(0.62 0.05 300));
+
+    /* Brand and interaction: pumpkin orange, with a purple focus ring (slime green in dark) */
+    --tes-color-primary: light-dark(oklch(0.52 0.16 45), oklch(0.74 0.17 55));
+    --tes-color-primary-hover: light-dark(oklch(0.47 0.15 45), oklch(0.79 0.15 58));
+    --tes-color-primary-active: light-dark(oklch(0.42 0.13 45), oklch(0.84 0.12 62));
+    --tes-color-on-primary: light-dark(oklch(1 0 0), oklch(0.2 0.05 45));
+    --tes-color-primary-subtle: light-dark(oklch(0.94 0.04 60), oklch(0.31 0.07 50));
+    --tes-color-on-primary-subtle: light-dark(oklch(0.42 0.13 45), oklch(0.88 0.07 60));
+    --tes-color-neutral-subtle: light-dark(oklch(0.93 0.02 300), oklch(0.29 0.04 300));
+    --tes-color-neutral-subtle-hover: light-dark(oklch(0.89 0.03 300), oklch(0.34 0.045 300));
+    --tes-color-hover: light-dark(
+      color-mix(in oklch, oklch(0.22 0.045 300) 6%, transparent),
+      color-mix(in oklch, oklch(0.94 0.02 80) 8%, transparent)
+    );
+    --tes-color-selected: light-dark(oklch(0.93 0.04 60), oklch(0.32 0.07 300));
+    --tes-color-focus: light-dark(oklch(0.45 0.18 300), oklch(0.85 0.18 130));
+
+    /* Status */
+    --tes-color-success: light-dark(oklch(0.48 0.13 140), oklch(0.8 0.17 135));
+    --tes-color-success-hover: light-dark(oklch(0.43 0.12 140), oklch(0.85 0.15 135));
+    --tes-color-on-success: light-dark(oklch(1 0 0), oklch(0.2 0.05 140));
+    --tes-color-success-subtle: light-dark(oklch(0.94 0.04 140), oklch(0.29 0.06 140));
+    --tes-color-success-text: light-dark(oklch(0.4 0.11 140), oklch(0.84 0.14 135));
+    --tes-color-warning: light-dark(oklch(0.64 0.14 75), oklch(0.84 0.14 85));
+    --tes-color-warning-hover: light-dark(oklch(0.7 0.14 77), oklch(0.88 0.12 85));
+    --tes-color-on-warning: light-dark(oklch(0.18 0.03 70), oklch(0.2 0.04 85));
+    --tes-color-warning-subtle: light-dark(oklch(0.95 0.045 85), oklch(0.3 0.06 85));
+    --tes-color-warning-text: light-dark(oklch(0.46 0.1 70), oklch(0.87 0.12 85));
+    --tes-color-danger: light-dark(oklch(0.5 0.19 20), oklch(0.7 0.17 20));
+    --tes-color-danger-hover: light-dark(oklch(0.45 0.18 20), oklch(0.76 0.15 20));
+    --tes-color-on-danger: light-dark(oklch(1 0 0), oklch(0.2 0.05 20));
+    --tes-color-danger-subtle: light-dark(oklch(0.94 0.035 20), oklch(0.3 0.08 20));
+    --tes-color-danger-text: light-dark(oklch(0.43 0.17 20), oklch(0.84 0.09 20));
+    --tes-color-info: light-dark(oklch(0.5 0.13 285), oklch(0.77 0.1 285));
+    --tes-color-info-hover: light-dark(oklch(0.45 0.13 285), oklch(0.82 0.09 285));
+    --tes-color-on-info: light-dark(oklch(1 0 0), oklch(0.2 0.05 285));
+    --tes-color-info-subtle: light-dark(oklch(0.94 0.03 285), oklch(0.3 0.06 285));
+    --tes-color-info-text: light-dark(oklch(0.43 0.12 285), oklch(0.85 0.07 285));
+
+    /* Typography: the same rounded sans as Christmas */
+    --tes-font-sans:
+      'Nunito Variable', 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+      Arial, sans-serif;
+    --tes-font-mono:
+      ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    --tes-text-xs: var(--tes-size-12);
+    --tes-text-sm: var(--tes-size-14);
+    --tes-text-md: var(--tes-size-16);
+    --tes-text-lg: var(--tes-size-18);
+    --tes-text-xl: var(--tes-size-20);
+    --tes-text-2xl: var(--tes-size-24);
+    --tes-text-3xl: var(--tes-size-32);
+    --tes-leading-tight: 1.25;
+    --tes-leading-normal: 1.5;
+    --tes-weight-regular: 400;
+    --tes-weight-medium: 600;
+    --tes-weight-semibold: 700;
+    --tes-weight-bold: 800;
+    --tes-numeric: normal;
+
+    /* Space and density: roomy, like Christmas */
+    --tes-space-1: var(--tes-size-2);
+    --tes-space-2: var(--tes-size-4);
+    --tes-space-3: var(--tes-size-8);
+    --tes-space-4: var(--tes-size-12);
+    --tes-space-5: var(--tes-size-16);
+    --tes-space-6: var(--tes-size-20);
+    --tes-space-7: var(--tes-size-28);
+    --tes-space-8: var(--tes-size-40);
+    --tes-control-height-sm: var(--tes-size-28);
+    --tes-control-height-md: var(--tes-size-36);
+    --tes-control-height-lg: var(--tes-size-44);
+    --tes-control-padding-x: var(--tes-size-14);
+    --tes-control-gap: var(--tes-size-8);
+
+    /* Shape: a little sharper than Christmas, for a spookier silhouette */
+    --tes-radius-sm: var(--tes-size-2);
+    --tes-radius-md: var(--tes-size-6);
+    --tes-radius-lg: var(--tes-size-10);
+    --tes-radius-full: 9999px;
+    --tes-border-width: 1px;
+    --tes-focus-ring-width: 2px;
+    --tes-focus-ring-offset: 2px;
+
+    /* Elevation: purple-tinted shadows */
+    --tes-shadow-sm: 0 1px 2px light-dark(oklch(0.25 0.06 300 / 0.12), oklch(0.05 0.03 300 / 0.55));
+    --tes-shadow-md: 0 4px 14px -2px
+      light-dark(oklch(0.25 0.06 300 / 0.16), oklch(0.05 0.03 300 / 0.65));
+    --tes-shadow-lg: 0 14px 34px -6px
+      light-dark(oklch(0.25 0.06 300 / 0.2), oklch(0.05 0.03 300 / 0.75));
+
+    /* Motion: gentle */
+    --tes-duration-fast: var(--tes-time-120);
+    --tes-duration-normal: var(--tes-time-200);
+    --tes-duration-slow: var(--tes-time-400);
+    --tes-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+    --tes-easing-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+  }
+}
