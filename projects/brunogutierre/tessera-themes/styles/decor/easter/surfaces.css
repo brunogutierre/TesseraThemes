@@ -1,0 +1,95 @@
+/* Easter decoration: surfaces and overlays. */
+@layer tessera-themes.decor {
+  @scope ([data-tes-theme='easter']) to ([data-tes-theme]:not([data-tes-theme='easter'])) {
+    /* Cards: grass growing down from the top edge */
+    .tes-card::before {
+      --tt-sticker: url('../../art/easter/grass.svg');
+      inset-block-start: -0.3rem;
+      inset-inline: 0.5rem;
+      block-size: 0.8rem;
+      background-position: top;
+      background-size: 2.5rem 100%;
+      background-repeat: repeat-x;
+    }
+
+    /* Elevated, bunny and basket cards: a sticker standing on the top edge, clear of the
+       header actions below it */
+    .tes-card:is(
+        [data-variant='elevated'],
+        [data-tt-decor='bunny'],
+        [data-tt-decor='basket']
+      )::after {
+      --tt-sticker: url('../../art/easter/egg-zigzag.svg');
+      inset-block-start: -1.3rem;
+      inset-inline-end: 1rem;
+      inline-size: 1.4rem;
+      block-size: 1.65rem;
+      rotate: 10deg;
+    }
+
+    /* Bunny: a bunny peeking over the top edge, paws on the edge */
+    .tes-card[data-tt-decor='bunny']::after {
+      --tt-sticker: url('../../art/easter/bunny-peek.svg');
+      inset-block-start: -1.7rem;
+      inline-size: 2.1rem;
+      block-size: 1.75rem;
+      rotate: none;
+    }
+
+    /* Basket: a basket of eggs sitting on the top edge */
+    .tes-card[data-tt-decor='basket']::after {
+      --tt-sticker: url('../../art/easter/basket.svg');
+      inset-block-start: -1.4rem;
+      inline-size: 2.1rem;
+      block-size: 1.85rem;
+      rotate: -6deg;
+    }
+
+    /* Alerts and toasts: a sticker per tone on the start corner (the icon side: the dismiss button
+       is at the end): daisy, carrot, zigzag egg, cracked egg */
+    .tes-alert::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast']::after {
+      --tt-sticker: url('../../art/easter/egg-cracked.svg');
+      inset-block-start: -0.85rem;
+      inset-inline-start: -0.6rem;
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+      rotate: -10deg;
+    }
+
+    .tes-alert[data-tone='info']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='info']::after {
+      --tt-sticker: url('../../art/easter/daisy.svg');
+    }
+
+    .tes-alert[data-tone='success']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='success']::after {
+      --tt-sticker: url('../../art/easter/carrot.svg');
+    }
+
+    .tes-alert[data-tone='warning']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='warning']::after {
+      --tt-sticker: url('../../art/easter/egg-zigzag.svg');
+    }
+
+    /* Dialogs: bunting along the top of the header */
+    .tes-dialog > [data-tes-part='header']::before {
+      --tt-sticker: url('../../art/easter/bunting.svg');
+      inset-block-start: 0;
+      inset-inline: 0;
+      block-size: 0.75rem;
+      background-position: top;
+      background-size: 2.25rem 100%;
+      background-repeat: repeat-x;
+    }
+
+    /* Grass on the top edge of panels and tooltips: they scroll, so it is a background */
+    :is(.tes-menu, .tes-select, .tes-autocomplete, .tes-date-picker) [data-tes-part='panel'],
+    .tes-tooltip {
+      background-image: var(--tt-decor-image, url('../../art/easter/grass.svg'));
+      background-position: top;
+      background-size: 2rem 0.5rem;
+      background-repeat: repeat-x;
+    }
+  }
+}
