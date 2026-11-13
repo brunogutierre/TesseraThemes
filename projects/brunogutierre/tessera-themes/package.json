@@ -1,0 +1,41 @@
+{
+  "name": "@brunogutierre/tessera-themes",
+  "version": "0.0.0",
+  "description": "Seasonal themes for the Tessera Angular design system: festive palettes and decorations for every component.",
+  "keywords": [
+    "angular",
+    "design-system",
+    "tessera",
+    "themes",
+    "theming",
+    "christmas",
+    "halloween"
+  ],
+  "license": "MIT",
+  "author": "Bruno Gutierre",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunogutierre/TesseraThemes.git",
+    "directory": "projects/brunogutierre/tessera-themes"
+  },
+  "homepage": "https://brunogutierre.github.io/TesseraThemes/",
+  "bugs": {
+    "url": "https://github.com/brunogutierre/TesseraThemes/issues"
+  },
+  "peerDependencies": {
+    "@angular/core": "^22.2.0",
+    "@brunogutierre/tessera": "^0.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "exports": {
+    "./styles/*": "./styles/*"
+  },
+  "sideEffects": [
+    "*.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
