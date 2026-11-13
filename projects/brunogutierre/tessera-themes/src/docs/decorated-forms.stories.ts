@@ -80,7 +80,14 @@ const CATALOG = [
 export const FormsAndNavigation: StoryObj = {
   name: 'Forms and navigation',
   render: () => ({
-    props: { wraps: WRAPS, wrap: 'box', catalog: CATALOG, selected: ['mugs'], day: '2026-12-25' },
+    props: {
+      wraps: WRAPS,
+      wrap: 'box',
+      catalog: CATALOG,
+      selected: ['mugs'],
+      day: '2026-12-25',
+      halloween: '2026-10-31',
+    },
     template: `
       <div class="sb-stack" style="max-inline-size: 52rem; gap: var(--tes-space-7)">
         <tes-toolbar aria-label="Order actions" style="inline-size: fit-content">
@@ -125,6 +132,7 @@ export const FormsAndNavigation: StoryObj = {
         <div class="sb-grid">
           <tes-tree label="Catalog" [nodes]="catalog" [(value)]="selected" />
           <tes-calendar [(value)]="day" today="2026-12-20" />
+          <tes-calendar [(value)]="halloween" today="2026-10-20" />
         </div>
         <table tes-table>
           <caption>Orders</caption>
