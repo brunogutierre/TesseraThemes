@@ -22,6 +22,8 @@ describe('decoration contract', () => {
         }
         .tes-card[data-tt-decor='none']::before { content: ''; display: none; }
         .tes-card:hover::before { opacity: 0.5; }
+        .tes-tabs [data-tes-part='tab'] { background-image: var(--tt-decor-image, var(--tt-candy-stripe)); }
+        .tes-card::after { --tt-sticker: url('holly.svg'); }
       }`);
     expect(decorViolations(rules)).toEqual([]);
   });
@@ -33,6 +35,7 @@ describe('decoration contract', () => {
           .tes-badge::after { content: '★'; display: block; }
         }
         .tes-spinner { animation: tt-spin 1s infinite; }
+        .tes-input { background-image: url('snow.svg'); }
       }
       @layer tessera.components { .tes-tabs::after { content: ''; } }
       .app::before { content: 'unlayered app CSS is not ours'; }`);
@@ -41,6 +44,7 @@ describe('decoration contract', () => {
       '.tes-badge::after: pointer-events must be none',
       '.tes-badge::after: display must read --tt-decor-display',
       '.tes-spinner: animation-play-state must read --tt-play',
+      '.tes-input: background-image must read --tt-decor-image',
     ]);
   });
 
