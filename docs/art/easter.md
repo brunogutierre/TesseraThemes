@@ -2,10 +2,10 @@
 
 Art for the Easter theme of `@brunogutierre/tessera-themes`. Like Christmas and Halloween, the
 theme decorates every Tessera component with small illustrated stickers (painted eggs, bunnies,
-flowers…) and a few tileable strips. The placeholders in
-[`styles/art/easter/`](../../projects/brunogutierre/tessera-themes/styles/art/easter/) work but
-are rough; this brief describes the final art. **Replace each file in place, with the same name
-and viewBox**: the CSS reads the files by path, so no code changes are needed.
+flowers…) and a few tileable strips. The final SVGs live in
+[`styles/art/easter/`](../../projects/brunogutierre/tessera-themes/styles/art/easter/).
+This brief defines their style and delivery contract. **Keep each filename and viewBox** when
+revising the art: the CSS reads the files by path, so no code changes are needed.
 
 The Christmas and Halloween art in [`styles/art/christmas/`](../../projects/brunogutierre/tessera-themes/styles/art/christmas/)
 and [`styles/art/halloween/`](../../projects/brunogutierre/tessera-themes/styles/art/halloween/)
@@ -59,26 +59,26 @@ Same as Christmas and Halloween: SVG 1.1 with `xmlns`, the **exact viewBox below
 
 ## Stickers and strips (theme decoration)
 
-| File                 | viewBox     | Display size | Kind      | Used by                                                           | Description                                                                                                                                                                                           | Status      |
-| -------------------- | ----------- | ------------ | --------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `egg-stripes.svg`    | 0 0 24 28   | 16–24 px     | sticker   | Primary buttons (corner), slider thumb, the selected calendar day | Lilac egg with two deep-lilac horizontal bands and a wavy pink band between them. Must stand out on a violet button and read at 16 px on the slider.                                                  | placeholder |
-| `egg-dots.svg`       | 0 0 24 28   | 16–20 px     | sticker   | Secondary buttons, tags                                           | Mint egg with deep-mint polka dots of two sizes.                                                                                                                                                      | placeholder |
-| `egg-zigzag.svg`     | 0 0 24 28   | 16–34 px     | sticker   | Warning badges, alerts and toasts; elevated cards                 | Yolk-yellow egg with a deep-yolk zigzag band around the middle.                                                                                                                                       | placeholder |
-| `egg-cracked.svg`    | 0 0 24 28   | 24 px        | sticker   | Danger alerts and toasts                                          | Pink egg with a zigzag crack across the middle and a tiny piece of shell lifted; a chick's eye peeks through the crack. Friendly, not broken-sad.                                                     | placeholder |
-| `daisy.svg`          | 0 0 24 24   | 18–24 px     | sticker   | Info alerts and toasts, form fields (end of the label row)        | Daisy seen from the front: eight rounded cream petals around a yolk centre. Never red: near a label a red mark reads as "required".                                                                   | placeholder |
-| `carrot.svg`         | 0 0 24 24   | 24 px        | sticker   | Success alerts and toasts                                         | Carrot lying diagonally (tip bottom-left), three ridge lines, a bushy grass-green top.                                                                                                                | placeholder |
-| `tulip.svg`          | 0 0 20 28   | 14–20 px     | sticker   | Fieldset legends, stats                                           | Pink-deep tulip with three petals, a grass stem and one leaf.                                                                                                                                         | placeholder |
-| `bunny-ears.svg`     | 0 0 32 24   | 14–38 px     | sticker   | Avatars (sticking up from the top, centred)                       | A pair of upright cream bunny ears with pink insides, the right one bent at the tip. The base is flat and hidden behind the avatar, so draw nothing below y = 22.                                     | placeholder |
-| `bunny-peek.svg`     | 0 0 32 26   | 34×28 px     | sticker   | Cards with `ttDecor="bunny"` (peeking over the top edge)          | Top half of a cream bunny head peeking over an edge: two ears, dot eyes, pink nose, cheeks, two paws resting on the edge at the bottom (y = 26).                                                      | placeholder |
-| `basket.svg`         | 0 0 32 28   | 34×30 px     | sticker   | Cards with `ttDecor="basket"` (end corner)                        | Wicker basket (yolk-deep weave) with a handle, three eggs (lilac, mint, pink) and grass tufts peeking out.                                                                                            | placeholder |
-| `grass.svg`          | 0 0 40 12   | 40×13 px     | tile (x)  | Top edge of cards, menus, select/listbox panels, tooltips, inputs | A strip of grass blades growing **down** from the top edge (flat top, blade tips pointing down), two greens, one tiny daisy. Seamless left/right. Stretched in height (`preserveAspectRatio="none"`). | placeholder |
-| `bunting.svg`        | 0 0 48 16   | 48×16 px     | tile (x)  | Dialog headers, toolbars                                          | A string of rounded pennants (lilac, pink, mint, yolk) hanging from a sagging cord. Seamless left/right.                                                                                              | placeholder |
-| `sparkles.svg`       | 0 0 24 24   | 15–22 px     | flat      | Solid badges, stats                                               | A cluster: a big yolk four-point star, a small pink four-point star and a sky plus sign. No outline.                                                                                                  | placeholder |
-| `egg-mask.svg`       | 0 0 24 24   | 14×14 px     | mask      | Checkbox check mark                                               | Egg silhouette with a zigzag band cut out across the middle, filling about 80% of the height.                                                                                                         | placeholder |
-| `separator-egg.svg`  | 0 0 12 12   | 10×10 px     | mask      | Breadcrumb separators                                             | Tiny egg silhouette.                                                                                                                                                                                  | placeholder |
-| `bunny-knob-on.svg`  | 0 0 24 24   | 14×14 px     | flat      | Switch knob when on (sits on violet)                              | Cream bunny head silhouette with two ears and two dark dot eyes. No outline.                                                                                                                          | placeholder |
-| `bunny-knob-off.svg` | 0 0 24 24   | 14×14 px     | flat      | Switch knob when off (sits on a pale or dark neutral)             | Same bunny head in grey `#7C6E8A` (3:1 against both neutrals).                                                                                                                                        | placeholder |
-| `pattern.svg`        | 0 0 160 160 | 160×160 px   | tile (2D) | Themed page background (shown at ~14% strength behind a veil)     | Sparse scatter: small eggs in lilac, pink and mint, yolk four-point stars, sky plus signs, one small daisy. Lots of empty space. Seamless in both directions.                                         | placeholder |
+| File                 | viewBox     | Display size | Kind      | Used by                                                           | Description                                                                                                                                                                                           | Status |
+| -------------------- | ----------- | ------------ | --------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| `egg-stripes.svg`    | 0 0 24 28   | 16–24 px     | sticker   | Primary buttons (corner), slider thumb, the selected calendar day | Lilac egg with two deep-lilac horizontal bands and a wavy pink band between them. Must stand out on a violet button and read at 16 px on the slider.                                                  | final  |
+| `egg-dots.svg`       | 0 0 24 28   | 16–20 px     | sticker   | Secondary buttons, tags                                           | Mint egg with deep-mint polka dots of two sizes.                                                                                                                                                      | final  |
+| `egg-zigzag.svg`     | 0 0 24 28   | 16–34 px     | sticker   | Warning badges, alerts and toasts; elevated cards                 | Yolk-yellow egg with a deep-yolk zigzag band around the middle.                                                                                                                                       | final  |
+| `egg-cracked.svg`    | 0 0 24 28   | 24 px        | sticker   | Danger alerts and toasts                                          | Pink egg with a zigzag crack across the middle and a tiny piece of shell lifted; a chick's eye peeks through the crack. Friendly, not broken-sad.                                                     | final  |
+| `daisy.svg`          | 0 0 24 24   | 18–24 px     | sticker   | Info alerts and toasts, form fields (end of the label row)        | Daisy seen from the front: eight rounded cream petals around a yolk centre. Never red: near a label a red mark reads as "required".                                                                   | final  |
+| `carrot.svg`         | 0 0 24 24   | 24 px        | sticker   | Success alerts and toasts                                         | Carrot lying diagonally (tip bottom-left), three ridge lines, a bushy grass-green top.                                                                                                                | final  |
+| `tulip.svg`          | 0 0 20 28   | 14–20 px     | sticker   | Fieldset legends, stats                                           | Pink-deep tulip with three petals, a grass stem and one leaf.                                                                                                                                         | final  |
+| `bunny-ears.svg`     | 0 0 32 24   | 14–38 px     | sticker   | Avatars (sticking up from the top, centred)                       | A pair of upright cream bunny ears with pink insides, the right one bent at the tip. The base is flat and hidden behind the avatar, so draw nothing below y = 22.                                     | final  |
+| `bunny-peek.svg`     | 0 0 32 26   | 34×28 px     | sticker   | Cards with `ttDecor="bunny"` (peeking over the top edge)          | Top half of a cream bunny head peeking over an edge: two ears, dot eyes, pink nose, cheeks, two paws resting on the edge at the bottom (y = 26).                                                      | final  |
+| `basket.svg`         | 0 0 32 28   | 34×30 px     | sticker   | Cards with `ttDecor="basket"` (end corner)                        | Wicker basket (yolk-deep weave) with a handle, three eggs (lilac, mint, pink) and grass tufts peeking out.                                                                                            | final  |
+| `grass.svg`          | 0 0 40 12   | 40×13 px     | tile (x)  | Top edge of cards, menus, select/listbox panels, tooltips, inputs | A strip of grass blades growing **down** from the top edge (flat top, blade tips pointing down), two greens, one tiny daisy. Seamless left/right. Stretched in height (`preserveAspectRatio="none"`). | final  |
+| `bunting.svg`        | 0 0 48 16   | 48×16 px     | tile (x)  | Dialog headers, toolbars                                          | A string of rounded pennants (lilac, pink, mint, yolk) hanging from a sagging cord. Seamless left/right.                                                                                              | final  |
+| `sparkles.svg`       | 0 0 24 24   | 15–22 px     | flat      | Solid badges, stats                                               | A cluster: a big yolk four-point star, a small pink four-point star and a sky plus sign. No outline.                                                                                                  | final  |
+| `egg-mask.svg`       | 0 0 24 24   | 14×14 px     | mask      | Checkbox check mark                                               | Egg silhouette with a zigzag band cut out across the middle, filling about 80% of the height.                                                                                                         | final  |
+| `separator-egg.svg`  | 0 0 12 12   | 10×10 px     | mask      | Breadcrumb separators                                             | Tiny egg silhouette.                                                                                                                                                                                  | final  |
+| `bunny-knob-on.svg`  | 0 0 24 24   | 14×14 px     | flat      | Switch knob when on (sits on violet)                              | Cream bunny head silhouette with two ears and two dark dot eyes. No outline.                                                                                                                          | final  |
+| `bunny-knob-off.svg` | 0 0 24 24   | 14×14 px     | flat      | Switch knob when off (sits on a pale or dark neutral)             | Same bunny head in grey `#7C6E8A` (3:1 against both neutrals).                                                                                                                                        | final  |
+| `pattern.svg`        | 0 0 160 160 | 160×160 px   | tile (2D) | Themed page background (shown at ~14% strength behind a veil)     | Sparse scatter: small eggs in lilac, pink and mint, yolk four-point stars, sky plus signs, one small daisy. Lots of empty space. Seamless in both directions.                                         | final  |
 
 ## Festive icons (`tt-icon`, planned)
 
@@ -87,20 +87,20 @@ component.
 
 | File                       | viewBox   | Display size | Description                                    | Status |
 | -------------------------- | --------- | ------------ | ---------------------------------------------- | ------ |
-| `icon-bunny.svg`           | 0 0 24 24 | 16–32 px     | Sitting cream bunny, side view, cotton tail    | to do  |
-| `icon-egg.svg`             | 0 0 24 24 | 16–32 px     | Painted egg with stripes and dots              | to do  |
-| `icon-chick.svg`           | 0 0 24 24 | 16–32 px     | Yolk chick hatching from a shell               | to do  |
-| `icon-carrot.svg`          | 0 0 24 24 | 16–32 px     | Carrot with a leafy top                        | to do  |
-| `icon-basket.svg`          | 0 0 24 24 | 16–32 px     | Basket of eggs                                 | to do  |
-| `icon-tulip.svg`           | 0 0 24 24 | 16–32 px     | Pink tulip with a leaf                         | to do  |
-| `icon-daisy.svg`           | 0 0 24 24 | 16–32 px     | Daisy with a yolk centre                       | to do  |
-| `icon-butterfly.svg`       | 0 0 24 24 | 16–32 px     | Lilac and pink butterfly                       | to do  |
-| `icon-nest.svg`            | 0 0 24 24 | 16–32 px     | Twig nest with three small eggs                | to do  |
-| `icon-chocolate-bunny.svg` | 0 0 24 24 | 16–32 px     | Chocolate bunny with a ribbon bow; brown fills | to do  |
-| `icon-lamb.svg`            | 0 0 24 24 | 16–32 px     | Fluffy cream lamb                              | to do  |
-| `icon-ladybug.svg`         | 0 0 24 24 | 16–32 px     | Ladybug (pink-deep shell, outline dots)        | to do  |
-| `icon-sun.svg`             | 0 0 24 24 | 16–32 px     | Smiling spring sun                             | to do  |
-| `icon-watering-can.svg`    | 0 0 24 24 | 16–32 px     | Mint watering can with water drops             | to do  |
+| `icon-bunny.svg`           | 0 0 24 24 | 16–32 px     | Sitting cream bunny, side view, cotton tail    | final  |
+| `icon-egg.svg`             | 0 0 24 24 | 16–32 px     | Painted egg with stripes and dots              | final  |
+| `icon-chick.svg`           | 0 0 24 24 | 16–32 px     | Yolk chick hatching from a shell               | final  |
+| `icon-carrot.svg`          | 0 0 24 24 | 16–32 px     | Carrot with a leafy top                        | final  |
+| `icon-basket.svg`          | 0 0 24 24 | 16–32 px     | Basket of eggs                                 | final  |
+| `icon-tulip.svg`           | 0 0 24 24 | 16–32 px     | Pink tulip with a leaf                         | final  |
+| `icon-daisy.svg`           | 0 0 24 24 | 16–32 px     | Daisy with a yolk centre                       | final  |
+| `icon-butterfly.svg`       | 0 0 24 24 | 16–32 px     | Lilac and pink butterfly                       | final  |
+| `icon-nest.svg`            | 0 0 24 24 | 16–32 px     | Twig nest with three small eggs                | final  |
+| `icon-chocolate-bunny.svg` | 0 0 24 24 | 16–32 px     | Chocolate bunny with a ribbon bow; brown fills | final  |
+| `icon-lamb.svg`            | 0 0 24 24 | 16–32 px     | Fluffy cream lamb                              | final  |
+| `icon-ladybug.svg`         | 0 0 24 24 | 16–32 px     | Ladybug (pink-deep shell, outline dots)        | final  |
+| `icon-sun.svg`             | 0 0 24 24 | 16–32 px     | Smiling spring sun                             | final  |
+| `icon-watering-can.svg`    | 0 0 24 24 | 16–32 px     | Mint watering can with water drops             | final  |
 
 ## Delivery checklist
 
@@ -108,3 +108,20 @@ component.
 2. Run `npm test` (contract, contrast, art spec) and `npm run test:stories -- easter-light easter-dark`.
 3. Check the Storybook gallery in Easter light and dark: each sticker reads at its size on both backgrounds.
 4. Update the **Status** column to `final`.
+
+## Delivered art
+
+All 18 decorative assets and 14 festive icons are original SVG drawings in the same family as
+Christmas and Halloween, using the Easter pastel palette and chocolate outlines. The chocolate
+bunny has a cream die-cut rim for the dark background. Files are optimized with SVGO 4.1
+(multipass, precision 1); masks retain an explicit black fill. No raster generation or
+image-generation prompt was used.
+
+Open [the local art gallery](easter-preview.html) to inspect all assets at their display sizes,
+enlarged on cream and lilac night, and as repeating strips. The SVGs remain editable. Implementing
+the planned `tt-icon` component is outside this art delivery.
+
+Validation: `npm test` passes all 54 tests. `npm run test:stories -- easter-light easter-dark`
+passes all 7 stories in each mode, including accessibility checks. The Storybook component gallery
+was visually reviewed in both modes. All 32 SVGs pass viewBox, structure and size checks; the
+largest is 1,676 bytes. The local gallery loads every asset successfully.
