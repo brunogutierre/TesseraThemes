@@ -16,8 +16,12 @@
     }
   }
 
-  /* Hosts that carry a sticker become its containing block; this never moves them. */
-  [data-tes-theme='christmas'] :is(.tes-button, .tes-avatar, .tes-badge, .tes-tag) {
+  /*
+   * Hosts that carry a sticker become its containing block; this never moves them. Buttons are
+   * left out: Tessera already makes them relative, and some components position a button
+   * absolutely (the date picker's calendar button), which this layer would override.
+   */
+  [data-tes-theme='christmas'] :is(.tes-avatar, .tes-badge, .tes-tag) {
     position: relative;
   }
 }

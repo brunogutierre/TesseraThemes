@@ -1,15 +1,16 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { TesButton } from '@brunogutierre/tessera';
+import { TesButton, TesDatePicker } from '@brunogutierre/tessera';
 import { TtDecor } from '../decor/decor';
 import { loadStyles } from '../../test-utils/styles';
 
 @Component({
-  imports: [TesButton, TtDecor],
+  imports: [TesButton, TesDatePicker, TtDecor],
   template: `
     <div data-tes-theme="christmas" data-tes-mode="light">
       <button tes-button id="bow" variant="primary">Order</button>
       <button tes-button id="no-bow" variant="primary" ttDecor="none">Order</button>
+      <tes-date-picker id="date" aria-label="Delivery date" />
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -35,5 +36,11 @@ describe('Christmas decoration', () => {
   it('turns every sticker off with ttDecor="none"', async () => {
     const style = await render();
     expect(style('no-bow', '::after').display).toBe('none');
+  });
+
+  it('never moves a Tessera button out of its place', async () => {
+    await render();
+    const toggle = document.querySelector('#date [data-tes-part="toggle"]')!;
+    expect(getComputedStyle(toggle).position).toBe('absolute');
   });
 });
