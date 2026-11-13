@@ -13,7 +13,7 @@ afterEach(() => {
 
 describe('seasonal themes', () => {
   it('lists each theme once', () => {
-    expect(TT_THEMES).toEqual(['christmas', 'halloween']);
+    expect(TT_THEMES).toEqual(['christmas', 'halloween', 'easter']);
     expect(new Set(TT_THEMES).size).toBe(TT_THEMES.length);
   });
 
@@ -24,7 +24,14 @@ describe('seasonal themes', () => {
   it('registers the themes with Tessera, after the built-in ones', () => {
     TestBed.configureTestingModule({ providers: [provideSeasonalThemes()] });
     const theme = TestBed.inject(TesseraTheme);
-    expect(theme.themes).toEqual(['enterprise', 'fintech', 'care', 'christmas', 'halloween']);
+    expect(theme.themes).toEqual([
+      'enterprise',
+      'fintech',
+      'care',
+      'christmas',
+      'halloween',
+      'easter',
+    ]);
   });
 
   it('lets Tessera adopt a seasonal theme from the markup', () => {
