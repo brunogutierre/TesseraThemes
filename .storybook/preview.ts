@@ -1,9 +1,11 @@
 import '@brunogutierre/tessera/styles/tessera.css';
+import '../projects/brunogutierre/tessera-themes/styles/tessera-themes.css';
 import './storybook.css';
 
 import { applicationConfig } from '@storybook/angular-vite';
 import type { Decorator, Preview } from '@storybook/angular-vite';
 import { provideTessera } from '@brunogutierre/tessera';
+import { provideSeasonalThemes } from '../projects/brunogutierre/tessera-themes/src/public-api';
 
 /** Set by the story test runner (vitest.storybook.config.mts) to test each theme and mode. */
 declare const __TT_GLOBALS__: { theme: string; mode: string } | undefined;
@@ -29,7 +31,10 @@ const withTheme: Decorator = (story, context) => {
 };
 
 const preview: Preview = {
-  decorators: [withTheme, applicationConfig({ providers: [provideTessera()] })],
+  decorators: [
+    withTheme,
+    applicationConfig({ providers: [provideTessera(), provideSeasonalThemes()] }),
+  ],
   globalTypes: {
     theme: {
       description: 'Theme',
