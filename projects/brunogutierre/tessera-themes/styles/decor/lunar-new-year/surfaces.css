@@ -1,0 +1,101 @@
+/* Lunar New Year decoration: surfaces and overlays. */
+@layer tessera-themes.decor {
+  @scope ([data-tes-theme='lunar-new-year']) to ([data-tes-theme]:not([data-tes-theme='lunar-new-year'])) {
+    /* Cards: auspicious clouds hanging from the top edge */
+    .tes-card::before {
+      --tt-sticker: url('../../art/lunar-new-year/clouds.svg');
+      inset-block-start: -0.2rem;
+      inset-inline: 0.5rem;
+      block-size: 0.55rem;
+      background-position: top;
+      background-size: 2.5rem 100%;
+      background-repeat: repeat-x;
+    }
+
+    /* Elevated and motif cards: a sticker standing on the top edge, clear of the header actions
+       below it */
+    .tes-card:is(
+        [data-variant='elevated'],
+        [data-tt-decor='dragon'],
+        [data-tt-decor='lion'],
+        [data-tt-decor='envelope']
+      )::after {
+      --tt-sticker: url('../../art/lunar-new-year/ingot.svg');
+      inset-block-start: -1.1rem;
+      inset-inline-end: 1rem;
+      inline-size: 2rem;
+      block-size: 1.4rem;
+    }
+
+    /* Dragon and lion: peeking over the top edge */
+    .tes-card[data-tt-decor='dragon']::after {
+      --tt-sticker: url('../../art/lunar-new-year/dragon-peek.svg');
+      inset-block-start: -1.55rem;
+      inline-size: 2.5rem;
+      block-size: 1.6rem;
+    }
+
+    .tes-card[data-tt-decor='lion']::after {
+      --tt-sticker: url('../../art/lunar-new-year/lion-peek.svg');
+      inset-block-start: -1.7rem;
+      inline-size: 2.25rem;
+      block-size: 1.75rem;
+    }
+
+    /* Envelope: a red envelope tucked on the end corner */
+    .tes-card[data-tt-decor='envelope']::after {
+      --tt-sticker: url('../../art/lunar-new-year/envelope.svg');
+      inset-block-start: -0.9rem;
+      inline-size: 1.3rem;
+      block-size: 1.5rem;
+      rotate: 8deg;
+    }
+
+    /* Alerts and toasts: a sticker per tone on the start corner (the icon side: the dismiss button
+       is at the end): lantern, red envelope, ingot, firecrackers */
+    .tes-alert::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast']::after {
+      --tt-sticker: url('../../art/lunar-new-year/firecracker.svg');
+      inset-block-start: -0.85rem;
+      inset-inline-start: -0.6rem;
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+      rotate: -10deg;
+    }
+
+    .tes-alert[data-tone='info']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='info']::after {
+      --tt-sticker: url('../../art/lunar-new-year/lantern.svg');
+    }
+
+    .tes-alert[data-tone='success']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='success']::after {
+      --tt-sticker: url('../../art/lunar-new-year/envelope.svg');
+    }
+
+    .tes-alert[data-tone='warning']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='warning']::after {
+      --tt-sticker: url('../../art/lunar-new-year/ingot.svg');
+    }
+
+    /* Dialogs: a string of lanterns along the top of the header */
+    .tes-dialog > [data-tes-part='header']::before {
+      --tt-sticker: url('../../art/lunar-new-year/lantern-string.svg');
+      inset-block-start: 0;
+      inset-inline: 0;
+      block-size: 0.75rem;
+      background-position: top;
+      background-size: 2.25rem 100%;
+      background-repeat: repeat-x;
+    }
+
+    /* Clouds on the top edge of panels and tooltips: they scroll, so it is a background */
+    :is(.tes-menu, .tes-select, .tes-autocomplete, .tes-date-picker) [data-tes-part='panel'],
+    .tes-tooltip {
+      background-image: var(--tt-decor-image, url('../../art/lunar-new-year/clouds.svg'));
+      background-position: top;
+      background-size: 2.5rem 0.5rem;
+      background-repeat: repeat-x;
+    }
+  }
+}

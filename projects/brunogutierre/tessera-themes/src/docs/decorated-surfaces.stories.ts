@@ -91,6 +91,9 @@ export const Surfaces: StoryObj = {
           <tes-card ttDecor="ghost"><strong>Ghost</strong><p style="margin: 0">Halloween: peeking over the edge.</p></tes-card>
           <tes-card ttDecor="bunny"><strong>Bunny</strong><p style="margin: 0">Easter: peeking over the edge.</p></tes-card>
           <tes-card ttDecor="basket"><strong>Basket</strong><p style="margin: 0">Easter: a basket of eggs.</p></tes-card>
+          <tes-card ttDecor="dragon"><strong>Dragon</strong><p style="margin: 0">Lunar New Year: peeking over the edge.</p></tes-card>
+          <tes-card ttDecor="lion"><strong>Lion</strong><p style="margin: 0">Lunar New Year: a lion-dance head.</p></tes-card>
+          <tes-card ttDecor="envelope"><strong>Envelope</strong><p style="margin: 0">Lunar New Year: a red envelope.</p></tes-card>
           <tes-card ttDecor="none"><strong>Plain</strong><p style="margin: 0">ttDecor="none": no decoration.</p></tes-card>
         </div>
         <tes-alert tone="info" heading="Holiday hours">Stores close at 6 pm on the 24th.</tes-alert>

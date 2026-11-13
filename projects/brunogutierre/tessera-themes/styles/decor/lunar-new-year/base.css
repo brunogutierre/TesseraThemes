@@ -1,0 +1,95 @@
+/*
+ * Lunar New Year decoration, shared rules. Art lives in ../../art/lunar-new-year/*.svg (see docs/art/lunar-new-year.md).
+ *
+ * Every Lunar New Year rule sits in a scope "donut": from a Lunar New Year theme root down to, but not into,
+ * a nested scope of another theme, so a tesTheme="enterprise" panel inside a Lunar New Year page stays
+ * plain. Rules set component tokens on the hosts, not on the root, because a scope does not stop
+ * inheritance.
+ *
+ * Placement rules: a sticker may poke out at block-start or inline-start only (overflow there is
+ * never scrollable); its inline-end offset is >= 0. It never sits on a corner that holds a control,
+ * and it is centred with inset-inline: 0 plus margin-inline: auto (RTL-safe).
+ */
+@layer tessera-themes.decor {
+  @scope ([data-tes-theme='lunar-new-year']) to ([data-tes-theme]:not([data-tes-theme='lunar-new-year'])) {
+    :scope {
+      --tt-candy-stripe: repeating-linear-gradient(
+        -45deg,
+        var(--tt-red) 0 0.3rem,
+        var(--tt-gold) 0.3rem 0.6rem
+      );
+    }
+
+    /* ttDecor="none" turns the whole subtree off, through the same switches as forced colors. */
+    :scope[data-tt-decor='none'],
+    [data-tt-decor='none'] {
+      --tt-decor-display: none;
+      --tt-decor-image: none;
+    }
+
+    /* A faint coin and lantern pattern behind the themed page, veiled so text keeps its contrast. Only on
+       page-level scopes: a component host keeps its own surface. */
+    :scope:not([class*='tes-']) {
+      background-image: var(
+        --tt-decor-image,
+        linear-gradient(
+          color-mix(in oklch, var(--tes-color-bg) 86%, transparent),
+          color-mix(in oklch, var(--tes-color-bg) 86%, transparent)
+        ),
+        url('../../art/lunar-new-year/pattern.svg')
+      );
+      background-size: auto, 10rem;
+    }
+
+    /*
+     * Hosts that carry a sticker become its containing block. This keeps their box in place, but it
+     * changes the containing block of absolutely positioned content projected into them. Buttons
+     * are left out: Tessera already makes them relative, and the date picker positions its
+     * calendar button absolutely.
+     */
+    :is(.tes-avatar, .tes-badge, .tes-tag, .tes-card, .tes-alert, .tes-form-field, .tes-toolbar),
+    .tes-stat > [data-tes-part='label'],
+    .tes-fieldset > [data-tes-part='legend'],
+    .tes-dialog > [data-tes-part='header'],
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'],
+    .tes-calendar td > [data-tes-part='day'] {
+      position: relative;
+    }
+
+    /* Photo avatars stay round: the knot needs overflow, so the clip moves to the picture. */
+    .tes-avatar {
+      overflow: visible;
+    }
+
+    .tes-avatar > img {
+      border-radius: inherit;
+    }
+
+    /* Every sticker: empty, inert, switchable. Component rules set only --tt-sticker and geometry. */
+    .tes-button:is([data-variant='primary'], [data-variant='secondary'])::after,
+    .tes-badge:is([data-variant='solid'], [data-tone='warning'])::after,
+    .tes-tag::before,
+    .tes-avatar::after,
+    .tes-stat > [data-tes-part='label']::after,
+    .tes-card::before,
+    .tes-card:is(
+        [data-variant='elevated'],
+        [data-tt-decor='dragon'],
+        [data-tt-decor='lion'],
+        [data-tt-decor='envelope']
+      )::after,
+    .tes-alert::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast']::after,
+    .tes-dialog > [data-tes-part='header']::before,
+    .tes-form-field::after,
+    .tes-fieldset > [data-tes-part='legend']::after,
+    .tes-toolbar::before,
+    .tes-calendar [aria-selected='true'] > [data-tes-part='day']::before {
+      content: '';
+      position: absolute;
+      display: var(--tt-decor-display, block);
+      pointer-events: none;
+      background: var(--tt-decor-image, var(--tt-sticker)) center / contain no-repeat;
+    }
+  }
+}
