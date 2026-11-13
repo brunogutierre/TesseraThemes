@@ -8,6 +8,7 @@ import { defineConfig } from 'vitest/config';
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const theme = process.env['TT_THEME'] ?? 'christmas';
 const mode = process.env['TT_MODE'] ?? 'light';
+const dir = process.env['TT_DIR'] ?? 'ltr';
 
 /**
  * Runs every story as a browser test: it must render, its play function must pass and axe must
@@ -21,7 +22,7 @@ export default defineConfig({
     storybookAngularVitest({ zoneless: true, tsConfig: '.storybook/tsconfig.json' }),
     storybookTest({ configDir: path.join(dirname, '.storybook') }),
   ],
-  define: { __TT_GLOBALS__: JSON.stringify({ theme, mode }) },
+  define: { __TT_GLOBALS__: JSON.stringify({ theme, mode, dir }) },
   // Pre-bundle every entry point stories import, so Vite never discovers one mid-run and reloads.
   optimizeDeps: {
     include: [
@@ -47,7 +48,7 @@ export default defineConfig({
     ],
   },
   test: {
-    name: `${theme}-${mode}`,
+    name: dir === 'rtl' ? `${theme}-${mode}-rtl` : `${theme}-${mode}`,
     // One story file at a time: parallel iframes crash Chromium on machines short of memory.
     fileParallelism: false,
     browser: {

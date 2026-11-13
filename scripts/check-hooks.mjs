@@ -20,6 +20,8 @@ const tessera = {
   // Inline templates keep their quotes; templateUrl ones are JS strings with escaped quotes.
   part: all(fesm, /data-tes-part=\\?"([a-z-]+)/g),
   token: all(fesm + files(join(TESSERA, 'styles'), '.css'), /(--tes-[a-z0-9-]+)/g),
+  // State attributes Tessera writes, in host bindings or templates. Values are not checked.
+  attribute: all(fesm, /\b(data-[a-z-]+)/g),
 };
 
 const css = files(OURS, '.css').replace(/\/\*[\s\S]*?\*\//g, '');
@@ -27,6 +29,11 @@ const used = {
   class: all(css, /\.(tes-[a-z0-9-]+)/g),
   part: all(css, /data-tes-part\s*[~|^$*]?=\s*['"]?([a-z-]+)/g),
   token: all(css, /(--tes-[a-z0-9-]+)/g),
+  attribute: new Set(
+    [...all(css, /\[(data-[a-z-]+)/g)].filter(
+      (a) => !['data-tes-theme', 'data-tes-mode', 'data-tes-part', 'data-tt-decor'].includes(a),
+    ),
+  ),
 };
 
 const missing = Object.entries(used).flatMap(([kind, names]) =>
