@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { TesButton, TesCard } from '@brunogutierre/tessera';
+import { TesButton, TesCard, TesDatePicker } from '@brunogutierre/tessera';
 import { TtDecor } from '../decor/decor';
 import { loadStyles } from '../../test-utils/styles';
 
 @Component({
-  imports: [TesCard, TesButton, TtDecor],
+  imports: [TesCard, TesButton, TesDatePicker, TtDecor],
   template: `
     <div data-tes-theme="christmas" data-tes-mode="light">
       <tes-card id="snow">Snow</tes-card>
@@ -13,6 +13,7 @@ import { loadStyles } from '../../test-utils/styles';
       <tes-card id="gift" ttDecor="gift">Gift</tes-card>
       <button tes-button id="bow" variant="primary">Order</button>
       <button tes-button id="no-bow" variant="primary" ttDecor="none">Order</button>
+      <tes-date-picker id="date" aria-label="Delivery date" />
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -55,5 +56,11 @@ describe('Christmas decoration', () => {
     const ribbonBottom =
       card.getBoundingClientRect().top + parseFloat(ribbon.top) + parseFloat(ribbon.height);
     expect(ribbonBottom).toBeLessThanOrEqual(text.getBoundingClientRect().top);
+  });
+
+  it('never moves a Tessera button out of its place', async () => {
+    await render();
+    const toggle = document.querySelector('#date [data-tes-part="toggle"]')!;
+    expect(getComputedStyle(toggle).position).toBe('absolute');
   });
 });
