@@ -4,7 +4,10 @@
  * off or still, and a decoration added later cannot forget to.
  *
  *   display: var(--tt-decor-display, block);
+ *   background-image: var(--tt-decor-image, url(…));   (also mask-image, and gradients)
  *   animation-play-state: var(--tt-play, running);
+ *
+ * ttDecor="none" sets the same variables on its subtree.
  */
 @layer tessera-themes.decor {
   /* Reduced motion: every animation stops on its first frame, a still image. */
@@ -18,6 +21,7 @@
   @media (forced-colors: active), print {
     :root {
       --tt-decor-display: none;
+      --tt-decor-image: none;
     }
   }
 }

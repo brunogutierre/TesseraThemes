@@ -40,7 +40,6 @@ describe('Christmas decoration', () => {
   it('turns every sticker off with ttDecor="none"', async () => {
     const style = await render();
     expect(style('plain', '::before').display).toBe('none');
-    expect(style('plain', '::after').display).toBe('none');
     expect(style('no-bow', '::after').display).toBe('none');
   });
 

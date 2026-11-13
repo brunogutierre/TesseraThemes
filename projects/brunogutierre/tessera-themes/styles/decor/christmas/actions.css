@@ -1,141 +1,119 @@
-/* Christmas decoration: actions and display (button, badge, tag, avatar, spinner, progress,
-   skeleton, stat, breadcrumbs). */
+/* Christmas decoration: actions and display. */
 @layer tessera-themes.decor {
-  [data-tes-theme='christmas'] {
-    --tes-button-radius: var(--tes-radius-full);
-  }
+  @scope ([data-tes-theme='christmas']) to ([data-tes-theme]:not([data-tes-theme='christmas'])) {
+    .tes-button:not(:where([data-tt-decor='none'], [data-tt-decor='none'] *)) {
+      --tes-button-radius: var(--tes-radius-full);
+    }
 
-  /* Buttons: a gold bow on primary, holly on secondary. Danger stays plain on purpose. */
-  [data-tes-theme='christmas']
+    /* Buttons: a gold bow on primary, holly on secondary. Danger stays plain on purpose. */
     .tes-button:is([data-variant='primary'], [data-variant='secondary'])::after {
-    content: '';
-    position: absolute;
-    inset-block-start: -0.6rem;
-    inset-inline-end: -0.4rem;
-    inline-size: 1.7rem;
-    block-size: 1.1rem;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: url('../../art/christmas/bow.svg') center / contain no-repeat;
-    rotate: 12deg;
-  }
+      --tt-sticker: url('../../art/christmas/bow.svg');
+      inset-block-start: -0.65rem;
+      inset-inline-end: 0.1rem;
+      inline-size: 1.7rem;
+      block-size: 1.1rem;
+      rotate: 12deg;
+    }
 
-  [data-tes-theme='christmas'] .tes-button[data-variant='secondary']::after {
-    background-image: url('../../art/christmas/holly.svg');
-    rotate: -8deg;
-  }
+    .tes-button[data-variant='secondary']::after {
+      --tt-sticker: url('../../art/christmas/holly.svg');
+      rotate: -8deg;
+    }
 
-  /* Small buttons and icon-only buttons get a smaller sticker */
-  [data-tes-theme='christmas'] .tes-button:is([data-size='sm'], [data-icon-only])::after {
-    inline-size: 1.25rem;
-    block-size: 0.8rem;
-    inset-block-start: -0.45rem;
-  }
+    .tes-button:is([data-size='sm'], [data-icon-only])::after {
+      inset-block-start: -0.5rem;
+      inline-size: 1.25rem;
+      block-size: 0.8rem;
+    }
 
-  /* Badges: a bell on warnings, sparkles on the other solid badges */
-  [data-tes-theme='christmas'] .tes-badge:is([data-variant='solid'], [data-tone='warning'])::after {
-    content: '';
-    position: absolute;
-    inset-block-start: -0.5rem;
-    inset-inline-end: -0.45rem;
-    inline-size: 0.95rem;
-    block-size: 0.95rem;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: url('../../art/christmas/sparkles.svg') center / contain no-repeat;
-  }
+    /* Badges: a bell on warnings, sparkles on the other solid badges */
+    .tes-badge:is([data-variant='solid'], [data-tone='warning'])::after {
+      --tt-sticker: url('../../art/christmas/sparkles.svg');
+      inset-block-start: -0.6rem;
+      inset-inline-end: 0;
+      inline-size: 0.95rem;
+      block-size: 0.95rem;
+    }
 
-  [data-tes-theme='christmas'] .tes-badge[data-tone='warning']::after {
-    background-image: url('../../art/christmas/bell.svg');
-    rotate: 15deg;
-  }
+    .tes-badge[data-tone='warning']::after {
+      --tt-sticker: url('../../art/christmas/bell.svg');
+      rotate: 15deg;
+    }
 
-  /* Tags: a candy cane hooked on the start corner */
-  [data-tes-theme='christmas'] .tes-tag::before {
-    content: '';
-    position: absolute;
-    inset-block-start: -0.55rem;
-    inset-inline-start: -0.5rem;
-    inline-size: 1.1rem;
-    block-size: 1.1rem;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: url('../../art/christmas/candy-cane.svg') center / contain no-repeat;
-    rotate: -20deg;
-  }
+    /* Tags: a candy cane hooked on the start corner */
+    .tes-tag::before {
+      --tt-sticker: url('../../art/christmas/candy-cane.svg');
+      inset-block-start: -0.55rem;
+      inset-inline-start: -0.5rem;
+      inline-size: 1.1rem;
+      block-size: 1.1rem;
+      rotate: -20deg;
+    }
 
-  /* Avatars: a Santa hat, sized with the avatar */
-  [data-tes-theme='christmas'] .tes-avatar {
-    overflow: visible;
-  }
+    /* Avatars: a Santa hat, sized with the avatar; higher on small avatars to clear the initials */
+    .tes-avatar::after {
+      --tt-sticker: url('../../art/christmas/santa-hat.svg');
+      inset-block-start: -38%;
+      inset-inline-start: -18%;
+      inline-size: 95%;
+      aspect-ratio: 32 / 26;
+      rotate: -18deg;
+    }
 
-  [data-tes-theme='christmas'] .tes-avatar::after {
-    content: '';
-    position: absolute;
-    inset-block-start: -38%;
-    inset-inline-start: -18%;
-    inline-size: 95%;
-    aspect-ratio: 32 / 26;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: url('../../art/christmas/santa-hat.svg') center / contain no-repeat;
-    rotate: -18deg;
-  }
+    .tes-avatar[data-size='sm']::after {
+      inset-block-start: -55%;
+    }
 
-  /* Spinner: a red and green wreath */
-  [data-tes-theme='christmas'] .tes-spinner [data-tes-part='track'] {
-    stroke: var(--tt-holly);
-  }
+    /* Stats: sparkles above the end of the label */
+    .tes-stat > [data-tes-part='label'] {
+      inline-size: fit-content;
+    }
 
-  [data-tes-theme='christmas'] .tes-spinner [data-tes-part='arc'] {
-    stroke: var(--tt-berry);
-  }
+    .tes-stat > [data-tes-part='label']::after {
+      --tt-sticker: url('../../art/christmas/sparkles.svg');
+      inset-block-start: -0.95rem;
+      inset-inline-end: 0;
+      inline-size: 1rem;
+      block-size: 1rem;
+    }
 
-  /* Progress: a candy-cane bar, outlined so its end stays visible on a light track */
-  [data-tes-theme='christmas'] .tes-progress:not([data-tone]) [data-tes-part='bar'],
-  [data-tes-theme='christmas'] .tes-progress[data-tone='primary'] [data-tes-part='bar'] {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      var(--tt-berry) 0 0.4rem,
-      var(--tt-snow) 0.4rem 0.8rem
-    );
-    box-shadow: inset 0 0 0 1px var(--tt-berry);
-  }
+    /* Spinner: a red and green wreath */
+    .tes-spinner > svg > [data-tes-part='track'] {
+      stroke: var(--tt-holly);
+    }
 
-  /* Skeleton: frosted bones with a hint of berry */
-  [data-tes-theme='christmas'] .tes-skeleton [data-tes-part='bone'] {
-    background-color: color-mix(in oklch, var(--tt-berry) 10%, var(--tes-color-neutral-subtle));
-  }
+    .tes-spinner > svg > [data-tes-part='arc'] {
+      stroke: var(--tt-berry);
+    }
 
-  /* Stats: sparkles right after the label */
-  [data-tes-theme='christmas'] .tes-stat [data-tes-part='label'] {
-    position: relative;
-    inline-size: fit-content;
-  }
+    /* Progress: a candy-cane bar on the primary tone, outlined so its end stays visible */
+    .tes-progress[data-tone='primary'] > [data-tes-part='track'] > [data-tes-part='bar'] {
+      background-image: var(--tt-decor-image, var(--tt-candy-stripe));
+      box-shadow: inset 0 0 0 1px var(--tt-berry);
+    }
 
-  [data-tes-theme='christmas'] .tes-stat [data-tes-part='label']::after {
-    content: '';
-    position: absolute;
-    inset-block-start: -0.35rem;
-    inset-inline-start: calc(100% + 0.2rem);
-    inline-size: 1.2rem;
-    block-size: 1.2rem;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: url('../../art/christmas/sparkles.svg') center / contain no-repeat;
-  }
+    /* Skeleton: frosted bones with a hint of berry */
+    .tes-skeleton > [data-tes-part='bone'] {
+      background-color: color-mix(in oklch, var(--tt-berry) 10%, var(--tes-color-neutral-subtle));
+    }
 
-  /* Breadcrumbs: Tessera's separator becomes a small berry star. Its text stays ("/"), and in
-     forced colors the plain separator comes back. */
-  @media (forced-colors: none) {
-    [data-tes-theme='christmas'] .tes-breadcrumbs li + li::before {
-      display: inline-block;
-      inline-size: 0.65rem;
-      block-size: 0.65rem;
-      overflow: hidden;
-      color: transparent;
-      background-color: var(--tt-berry);
-      mask: url('../../art/christmas/separator-star.svg') center / contain no-repeat;
+    /*
+     * Breadcrumbs: Tessera's own separator becomes a berry star. Its "/" stays, only hidden, so the
+     * rule is limited to screens outside forced colors and to decorated subtrees.
+     */
+    @media screen and (forced-colors: none) {
+      .tes-breadcrumbs:not(:where([data-tt-decor='none'], [data-tt-decor='none'] *))
+        li
+        + li::before {
+        display: inline-block;
+        inline-size: 0.65rem;
+        block-size: 0.65rem;
+        overflow: hidden;
+        color: transparent;
+        background-color: var(--tt-berry);
+        mask: var(--tt-decor-image, url('../../art/christmas/separator-star.svg')) center / contain
+          no-repeat;
+      }
     }
   }
 }
