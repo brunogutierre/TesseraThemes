@@ -13,7 +13,7 @@ afterEach(() => {
 
 describe('seasonal themes', () => {
   it('lists each theme once', () => {
-    expect(TT_THEMES).toEqual(['christmas', 'halloween', 'easter']);
+    expect(TT_THEMES).toEqual(['christmas', 'halloween', 'easter', 'lunar-new-year']);
     expect(new Set(TT_THEMES).size).toBe(TT_THEMES.length);
   });
 
@@ -31,6 +31,7 @@ describe('seasonal themes', () => {
       'christmas',
       'halloween',
       'easter',
+      'lunar-new-year',
     ]);
   });
 

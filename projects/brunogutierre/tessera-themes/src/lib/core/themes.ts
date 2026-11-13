@@ -2,7 +2,7 @@ import { provideTesseraThemes } from '@brunogutierre/tessera';
 import type { EnvironmentProviders } from '@angular/core';
 
 /** The themes in this package, in the order a theme picker should list them. */
-export const TT_THEMES = ['christmas', 'halloween', 'easter'] as const;
+export const TT_THEMES = ['christmas', 'halloween', 'easter', 'lunar-new-year'] as const;
 export type TtThemeName = (typeof TT_THEMES)[number];
 
 /*
@@ -14,6 +14,7 @@ declare module '@brunogutierre/tessera' {
     christmas: true;
     halloween: true;
     easter: true;
+    'lunar-new-year': true;
   }
 }
 

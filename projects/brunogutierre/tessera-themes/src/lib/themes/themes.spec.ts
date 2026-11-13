@@ -16,6 +16,11 @@ const FESTIVE_PAIRS = {
     { foreground: '--tt-lilac', background: '--tes-color-surface', minRatio: 3 },
     { foreground: '--tt-pink', background: '--tes-color-surface', minRatio: 3 },
   ],
+  // The red and gold stripes must stand out from the surface.
+  'lunar-new-year': [
+    { foreground: '--tt-red', background: '--tes-color-surface', minRatio: 3 },
+    { foreground: '--tt-gold', background: '--tes-color-surface', minRatio: 3 },
+  ],
 };
 
 beforeAll(loadStyles);
