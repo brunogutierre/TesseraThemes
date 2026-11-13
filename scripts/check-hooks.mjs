@@ -17,7 +17,8 @@ const all = (text, re) => new Set([...text.matchAll(re)].map((m) => m[1]));
 const fesm = files(join(TESSERA, 'fesm2022'), '.mjs');
 const tessera = {
   class: new Set([...all(fesm, /classAttribute: "([^"]+)"/g)].flatMap((c) => c.split(' '))),
-  part: all(fesm, /data-tes-part="([a-z-]+)"/g),
+  // Inline templates keep their quotes; templateUrl ones are JS strings with escaped quotes.
+  part: all(fesm, /data-tes-part=\\?"([a-z-]+)/g),
   token: all(fesm + files(join(TESSERA, 'styles'), '.css'), /(--tes-[a-z0-9-]+)/g),
 };
 
