@@ -1,0 +1,23 @@
+/*
+ * Global switches every decoration of this package obeys. Decoration never sets `display` or
+ * `animation-play-state` directly: it reads these variables, so one media query turns all of it
+ * off or still, and a decoration added later cannot forget to.
+ *
+ *   display: var(--tt-decor-display, block);
+ *   animation-play-state: var(--tt-play, running);
+ */
+@layer tessera-themes.decor {
+  /* Reduced motion: every animation stops on its first frame, a still image. */
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --tt-play: paused;
+    }
+  }
+
+  /* Forced colors and print: decoration is noise, and system colors would flatten it anyway. */
+  @media (forced-colors: active), print {
+    :root {
+      --tt-decor-display: none;
+    }
+  }
+}
