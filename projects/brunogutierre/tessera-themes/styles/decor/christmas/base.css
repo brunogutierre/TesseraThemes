@@ -20,11 +20,4 @@
   [data-tes-theme='christmas'] :is(.tes-button, .tes-avatar, .tes-badge, .tes-tag) {
     position: relative;
   }
-
-  /* Opt out on any element: ttDecor="none" */
-  [data-tes-theme='christmas'] [data-tt-decor='none']::before,
-  [data-tes-theme='christmas'] [data-tt-decor='none']::after {
-    content: '';
-    display: none;
-  }
 }
