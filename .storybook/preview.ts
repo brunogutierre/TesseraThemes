@@ -8,7 +8,7 @@ import { provideTessera } from '@brunogutierre/tessera';
 import { provideSeasonalThemes } from '../projects/brunogutierre/tessera-themes/src/public-api';
 
 /** Set by the story test runner (vitest.storybook.config.mts) to test each theme and mode. */
-declare const __TT_GLOBALS__: { theme: string; mode: string } | undefined;
+declare const __TT_GLOBALS__: { theme: string; mode: string; dir: string } | undefined;
 const testGlobals = typeof __TT_GLOBALS__ === 'undefined' ? undefined : __TT_GLOBALS__;
 
 /**

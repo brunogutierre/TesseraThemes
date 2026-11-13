@@ -1,115 +1,99 @@
-/* Christmas decoration: surfaces and overlays (card, alert, dialog, toast, tooltip, menu and
-   select, listbox and autocomplete panels). */
+/* Christmas decoration: surfaces and overlays. */
 @layer tessera-themes.decor {
-  [data-tes-theme='christmas'] :is(.tes-card, .tes-alert, .tes-dialog [data-tes-part='header']),
-  [data-tes-theme='christmas'] .tes-toast-stack [data-tes-part='toast'] {
-    position: relative;
-  }
+  @scope ([data-tes-theme='christmas']) to ([data-tes-theme]:not([data-tes-theme='christmas'])) {
+    /* Cards: fresh snow on the top edge */
+    .tes-card::before {
+      --tt-sticker: url('../../art/christmas/snowcap.svg');
+      inset-block-start: -0.3rem;
+      inset-inline: 0.5rem;
+      block-size: 0.8rem;
+      background-position: top;
+      background-size: 2.5rem 100%;
+      background-repeat: repeat-x;
+    }
 
-  /* Cards: fresh snow on the top edge; holly, a gift ribbon or a stocking as motifs */
-  [data-tes-theme='christmas'] .tes-card::before {
-    content: '';
-    position: absolute;
-    inset-block-start: -0.3rem;
-    inset-inline: 0.5rem;
-    block-size: 0.8rem;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: url('../../art/christmas/snowcap.svg') top / 2.5rem 100% repeat-x;
-  }
-
-  [data-tes-theme='christmas']
+    /* Elevated, gift and stocking cards: a sticker standing on the top edge, clear of the
+       header actions below it */
     .tes-card:is(
-      [data-variant='elevated'],
-      [data-tt-decor='gift'],
-      [data-tt-decor='stocking']
-    )::after {
-    content: '';
-    position: absolute;
-    inset-block-start: 0.45rem;
-    inset-inline-end: 0.45rem;
-    inline-size: 2.4rem;
-    block-size: 1.8rem;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: url('../../art/christmas/holly.svg') center / contain no-repeat;
-  }
+        [data-variant='elevated'],
+        [data-tt-decor='gift'],
+        [data-tt-decor='stocking']
+      )::after {
+      --tt-sticker: url('../../art/christmas/holly.svg');
+      inset-block-start: -1.4rem;
+      inset-inline-end: 1rem;
+      inline-size: 2.4rem;
+      block-size: 1.8rem;
+    }
 
-  /* Gift: a green ribbon across the top and a bow tied on it, instead of snow */
-  /* The ribbon stays inside the card's top padding, so it never covers the content. */
-  [data-tes-theme='christmas'] .tes-card[data-tt-decor='gift']::before {
-    inset-block-start: 0.2rem;
-    inset-inline: 0;
-    block-size: 0.4rem;
-    background: var(--tt-holly);
-  }
+    /* Gift: a green ribbon inside the top padding and a bow on it, instead of snow */
+    .tes-card[data-tt-decor='gift']::before {
+      --tt-sticker: linear-gradient(var(--tt-holly), var(--tt-holly));
+      inset-block-start: 0.2rem;
+      inset-inline: 0;
+      block-size: 0.4rem;
+      background-size: 100% 100%;
+    }
 
-  [data-tes-theme='christmas'] .tes-card[data-tt-decor='gift']::after {
-    inset-block-start: -0.75rem;
-    inset-inline-end: 1.25rem;
-    inline-size: 2.6rem;
-    block-size: 1.65rem;
-    background-image: url('../../art/christmas/bow.svg');
-  }
+    .tes-card[data-tt-decor='gift']::after {
+      --tt-sticker: url('../../art/christmas/bow.svg');
+      inset-block-start: -0.9rem;
+      inset-inline-end: 1.25rem;
+      inline-size: 2.6rem;
+      block-size: 1.65rem;
+    }
 
-  /* Stocking: hung on the corner */
-  [data-tes-theme='christmas'] .tes-card[data-tt-decor='stocking']::after {
-    inset-block-start: -0.5rem;
-    inline-size: 1.9rem;
-    block-size: 2.2rem;
-    background-image: url('../../art/christmas/stocking.svg');
-    rotate: 8deg;
-  }
+    /* Stocking: hung from the top edge */
+    .tes-card[data-tt-decor='stocking']::after {
+      --tt-sticker: url('../../art/christmas/stocking.svg');
+      inset-block-start: -1.6rem;
+      inline-size: 1.9rem;
+      block-size: 2.2rem;
+      rotate: 8deg;
+    }
 
-  /* Alerts and toasts: a sticker on the corner that matches the tone */
-  [data-tes-theme='christmas'] .tes-alert::after,
-  [data-tes-theme='christmas'] .tes-toast-stack [data-tes-part='toast']::after {
-    content: '';
-    position: absolute;
-    inset-block-start: -0.7rem;
-    inset-inline-end: -0.5rem;
-    inline-size: 1.8rem;
-    block-size: 1.8rem;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: url('../../art/christmas/holly.svg') center / contain no-repeat;
-    rotate: 10deg;
-  }
+    /* Alerts and toasts: a sticker per tone on the start corner (the icon side: the dismiss button
+       is at the end) */
+    .tes-alert::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast']::after {
+      --tt-sticker: url('../../art/christmas/holly.svg');
+      inset-block-start: -0.85rem;
+      inset-inline-start: -0.6rem;
+      inline-size: 1.5rem;
+      block-size: 1.5rem;
+      rotate: -10deg;
+    }
 
-  [data-tes-theme='christmas'] :is(.tes-alert, [data-tes-part='toast'])[data-tone='info']::after {
-    background-image: url('../../art/christmas/snowflake.svg');
-  }
+    .tes-alert[data-tone='info']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='info']::after {
+      --tt-sticker: url('../../art/christmas/snowflake.svg');
+    }
 
-  [data-tes-theme='christmas']
-    :is(.tes-alert, [data-tes-part='toast'])[data-tone='success']::after {
-    background-image: url('../../art/christmas/gift.svg');
-  }
+    .tes-alert[data-tone='success']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='success']::after {
+      --tt-sticker: url('../../art/christmas/gift.svg');
+    }
 
-  [data-tes-theme='christmas']
-    :is(.tes-alert, [data-tes-part='toast'])[data-tone='warning']::after {
-    background-image: url('../../art/christmas/bell.svg');
-  }
+    .tes-alert[data-tone='warning']::after,
+    .tes-toast-stack [data-tes-part='list'] > [data-tes-part='toast'][data-tone='warning']::after {
+      --tt-sticker: url('../../art/christmas/bell.svg');
+    }
 
-  /* Dialogs: a string of lights along the top of the header, holly on its corner */
-  [data-tes-theme='christmas'] .tes-dialog [data-tes-part='header']::before {
-    content: '';
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline: 0;
-    block-size: 0.75rem;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: url('../../art/christmas/lights.svg') top / 2.25rem 100% repeat-x;
-  }
+    /* Dialogs: a string of lights along the top of the header */
+    .tes-dialog > [data-tes-part='header']::before {
+      --tt-sticker: url('../../art/christmas/lights.svg');
+      inset-block-start: 0;
+      inset-inline: 0;
+      block-size: 0.75rem;
+      background-position: top;
+      background-size: 2.25rem 100%;
+      background-repeat: repeat-x;
+    }
 
-  /* Snow on the top edge of panels and tooltips. Panels scroll, so the snow is a background, not
-     a pseudo-element; it is drawn only outside forced colors and print. */
-  @media screen and (forced-colors: none) {
-    [data-tes-theme='christmas']
-      :is(.tes-menu, .tes-select, .tes-autocomplete, .tes-date-picker)
-      [data-tes-part='panel'],
-    [data-tes-theme='christmas'] .tes-tooltip {
-      background-image: url('../../art/christmas/snowcap.svg');
+    /* Snow on the top edge of panels and tooltips: they scroll, so it is a background */
+    :is(.tes-menu, .tes-select, .tes-autocomplete, .tes-date-picker) [data-tes-part='panel'],
+    .tes-tooltip {
+      background-image: var(--tt-decor-image, url('../../art/christmas/snowcap.svg'));
       background-position: top;
       background-size: 2rem 0.5rem;
       background-repeat: repeat-x;

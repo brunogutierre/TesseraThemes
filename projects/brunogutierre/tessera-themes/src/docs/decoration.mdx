@@ -6,40 +6,55 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 Seasonal decoration is CSS on [Tessera's public styling API](https://brunogutierre.github.io/Tessera/?path=/docs/foundations-extending-tessera--docs): host classes (`.tes-card`), state attributes, parts (`[data-tes-part='header']`) and component tokens. These rules keep it accessible; tests enforce each one.
 
-| Rule                                                      | Why                                                      | Enforced by                |
-| --------------------------------------------------------- | -------------------------------------------------------- | -------------------------- |
-| Pseudo-elements are empty: `content: ''`                  | Screen readers read generated text                       | Contract test              |
-| `pointer-events: none`, positioned inside the component   | Sizes and target areas never change                      | Contract test, screenshots |
-| `display: var(--tt-decor-display, block)`                 | Forced colors and print hide all decoration              | Contract test              |
-| `animation-play-state: var(--tt-play, running)`           | Reduced motion pauses every animation on its first frame | Contract test              |
-| No information by decoration alone                        | A seal or color never replaces Tessera's text            | Review                     |
-| Never cover the focus ring                                | WCAG 2.4.11                                              | Screenshots                |
-| Only public Tessera hooks                                 | A Tessera release cannot break a theme silently          | `npm run check:hooks`      |
-| Every semantic token, 49 contrast pairs in light and dark | Same guarantees as Tessera's themes                      | Theme tests                |
+| Rule                                                                                             | Why                                                      | Enforced by                |
+| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------- | -------------------------- |
+| Pseudo-elements are empty: `content: ''`                                                         | Screen readers read generated text                       | Contract test              |
+| `pointer-events: none`, positioned inside the component                                          | Sizes and target areas never change                      | Contract test, screenshots |
+| `display: var(--tt-decor-display, block)`                                                        | Forced colors and print hide all decoration              | Contract test              |
+| `background: var(--tt-decor-image, url(…))` for every decorative image, gradient or mask         | Forced colors, print and `ttDecor="none"` remove it      | Contract test              |
+| `animation-play-state: var(--tt-play, running)`                                                  | Reduced motion pauses every animation on its first frame | Contract test              |
+| Stickers poke out at block-start or inline-start only; inline-end offset ≥ 0                     | Overflow there never adds a scrollbar                    | Layout test                |
+| Never on a corner that holds a control (dismiss, header actions)                                 | The control and its focus ring stay visible              | Review, screenshots        |
+| Centred with `inset-inline: 0` and `margin-inline: auto`                                         | Correct in right-to-left layouts                         | RTL test                   |
+| Parts selected with the child combinator (`.tes-stat > [data-tes-part='label']`)                 | Part names repeat across components                      | Review                     |
+| Every theme's decoration inside `@scope (<theme>) to (<other theme>)`, component tokens on hosts | A nested `tesTheme` of another theme stays plain         | Nested scope test          |
+| No information by decoration alone                                                               | A seal or color never replaces Tessera's text            | Review                     |
+| Never cover the focus ring                                                                       | WCAG 2.4.11                                              | Screenshots                |
+| Only public Tessera hooks                                                                        | A Tessera release cannot break a theme silently          | `npm run check:hooks`      |
+| Every semantic token, 49 contrast pairs in light and dark                                        | Same guarantees as Tessera's themes                      | Theme tests                |
 
 ## Example
 
 ```css
 @layer tessera-themes.decor {
-  [data-tes-theme='christmas'] .tes-card::before {
-    content: '';
-    position: absolute;
-    inset: -0.25rem 0 auto;
-    block-size: 0.75rem;
-    display: var(--tt-decor-display, block);
-    pointer-events: none;
-    background: var(--tt-snowcap) top / auto 100% repeat-x;
-  }
-
-  [data-tes-theme='christmas'] .tes-card[data-tt-decor='none']::before {
-    display: none;
+  @scope ([data-tes-theme='christmas']) to ([data-tes-theme]:not([data-tes-theme='christmas'])) {
+    /* The theme's shared sticker rule lists this selector: it gives the empty content, the
+       absolute position, the switches and `var(--tt-decor-image, var(--tt-sticker))`. */
+    .tes-card::before {
+      --tt-sticker: url('../../art/christmas/snowcap.svg');
+      inset-block-start: -0.3rem;
+      inset-inline: 0.5rem;
+      block-size: 0.8rem;
+      background-size: 2.5rem 100%;
+      background-repeat: repeat-x;
+    }
   }
 }
 ```
 
+## Opting out
+
+`ttDecor="none"` turns decoration off for the element **and its whole subtree**: it sets the same switches as forced colors (`--tt-decor-display: none`, `--tt-decor-image: none`), and component tokens are only set outside opted-out subtrees.
+
+## Known side effects
+
+- Hosts that carry a sticker get `position: relative`. Their box does not move, but absolutely positioned content projected into them now positions against them.
+- Breadcrumb separators are Tessera's own pseudo-elements: the theme hides the "/" and paints a star, on screens outside forced colors only, so print and high contrast keep the slash.
+
 ## Switches
 
-| Condition                        | Variable                   | Effect                            |
-| -------------------------------- | -------------------------- | --------------------------------- |
-| `prefers-reduced-motion: reduce` | `--tt-play: paused`        | Animations show their first frame |
-| `forced-colors: active`, `print` | `--tt-decor-display: none` | Decoration disappears             |
+| Condition                        | Variable                                             | Effect                            |
+| -------------------------------- | ---------------------------------------------------- | --------------------------------- |
+| `prefers-reduced-motion: reduce` | `--tt-play: paused`                                  | Animations show their first frame |
+| `forced-colors: active`, `print` | `--tt-decor-display: none`, `--tt-decor-image: none` | Decoration disappears             |
+| `ttDecor="none"` on an element   | Both, on its subtree                                 | Decoration disappears there       |

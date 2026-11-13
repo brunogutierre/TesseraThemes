@@ -5,6 +5,8 @@
  * - A rule that creates a pseudo-element (sets `content`) must create it empty, out of the
  *   pointer's way, and switchable: `content: ''`, `pointer-events: none` and
  *   `display: var(--tt-decor-display, …)`.
+ * - A decorative image (url, gradient, sticker or stripe) must read
+ *   `var(--tt-decor-image, …)`, so forced colors, print and ttDecor="none" remove it.
  * - A rule that starts an animation must let reduced motion pause it:
  *   `animation-play-state: var(--tt-play, …)`.
  */
@@ -32,6 +34,16 @@ function styleViolations(rule: CSSStyleRule): string[] {
     }
     if (!style.getPropertyValue('display').includes('var(--tt-decor-display')) {
       problems.push('display must read --tt-decor-display');
+    }
+  }
+  for (const property of ['background', 'background-image', 'mask', 'mask-image']) {
+    // var() keeps its source whitespace in the object model: compare without it.
+    const value = style.getPropertyValue(property).replace(/\s+/g, '');
+    if (
+      /url\(|gradient\(|var\(--tt-(sticker|candy)/.test(value) &&
+      !value.includes('var(--tt-decor-image')
+    ) {
+      problems.push(`${property} must read --tt-decor-image`);
     }
   }
   const animation = style.getPropertyValue('animation-name');
