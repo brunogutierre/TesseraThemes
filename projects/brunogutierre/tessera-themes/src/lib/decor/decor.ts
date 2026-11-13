@@ -6,6 +6,10 @@ import { Directive, input } from '@angular/core';
  */
 export interface TtDecorRegistry {
   none: true;
+  /** Christmas card: a ribbon across the top and a bow. */
+  gift: true;
+  /** Christmas card: a stocking hanging on the corner. */
+  stocking: true;
 }
 export type TtDecorName = Extract<keyof TtDecorRegistry, string>;
 
