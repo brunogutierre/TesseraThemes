@@ -1,7 +1,7 @@
 import { commands } from 'vitest/browser';
 
 /** Themes with an art brief in docs/art/<theme>.md and files in styles/art/<theme>/. */
-const THEMES = ['christmas'];
+const THEMES = ['christmas', 'halloween'];
 
 /** Files the brief lists with a placeholder or final art, with their viewBox. */
 async function briefedFiles(theme: string): Promise<[string, string][]> {
