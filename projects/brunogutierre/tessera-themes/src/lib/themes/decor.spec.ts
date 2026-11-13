@@ -16,6 +16,7 @@ import {
   TesTag,
 } from '@brunogutierre/tessera';
 import { TtDecor } from '../decor/decor';
+import { TT_THEMES } from '../core/themes';
 import { loadStyles } from '../../test-utils/styles';
 
 const PIXEL =
@@ -39,11 +40,11 @@ const GALLERY = `
   <tes-date-picker class="t-date" aria-label="Delivery date" />
 `;
 
-/** Decorated, opted out, a nested scope of another theme, and right to left. */
-const TEMPLATE = `
+/** Decorated, opted out, a nested scope of another theme, and right to left, in one theme. */
+const template = (theme: string): string => `
     <div
       id="on"
-      data-tes-theme="christmas"
+      data-tes-theme="${theme}"
       data-tes-mode="light"
       style="inline-size: 18rem; overflow: auto"
     >
@@ -54,14 +55,14 @@ const TEMPLATE = `
     </div>
     <div
       id="off"
-      data-tes-theme="christmas"
+      data-tes-theme="${theme}"
       data-tes-mode="light"
       ttDecor="none"
       style="inline-size: 18rem; overflow: auto"
     >
       ${GALLERY}
     </div>
-    <div id="rtl" data-tes-theme="christmas" dir="rtl">
+    <div id="rtl" data-tes-theme="${theme}" dir="rtl">
       <tes-calendar value="2026-12-25" today="2026-12-20" />
     </div>
   `;
@@ -83,12 +84,13 @@ const TEMPLATE = `
     TesTag,
     TtDecor,
   ],
-  template: TEMPLATE,
+  template: '',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 class Host {}
 
-async function render(): Promise<HTMLElement> {
+async function render(theme: string): Promise<HTMLElement> {
+  TestBed.overrideTemplate(Host, template(theme));
   const fixture = TestBed.createComponent(Host);
   await fixture.whenStable();
   return fixture.nativeElement as HTMLElement;
@@ -99,9 +101,9 @@ const pseudo = (root: HTMLElement, selector: string, which: string): CSSStyleDec
 
 beforeAll(loadStyles);
 
-describe('Christmas decoration', () => {
+describe.each(TT_THEMES)('%s decoration', (theme) => {
   it('draws inert stickers on hosts and parts', async () => {
-    const on = (await render()).querySelector<HTMLElement>('#on')!;
+    const on = (await render(theme)).querySelector<HTMLElement>('#on')!;
     for (const [selector, which] of [
       ['.t-bow', '::after'],
       ['.t-card', '::before'],
@@ -114,7 +116,7 @@ describe('Christmas decoration', () => {
   });
 
   it('turns stickers, parts and backgrounds off with ttDecor="none"', async () => {
-    const off = (await render()).querySelector<HTMLElement>('#off')!;
+    const off = (await render(theme)).querySelector<HTMLElement>('#off')!;
     expect(pseudo(off, '.t-bow', '::after').display).toBe('none');
     expect(pseudo(off, '.t-card', '::before').display).toBe('none');
     expect(pseudo(off, '.t-stat > [data-tes-part="label"]', '::after').display).toBe('none');
@@ -126,13 +128,13 @@ describe('Christmas decoration', () => {
   });
 
   it('leaves a nested scope of another theme undecorated', async () => {
-    const root = await render();
+    const root = await render(theme);
     expect(pseudo(root, '.t-nested', '::after').content).toBe('none');
     expect(pseudo(root, '.t-nested', '').borderRadius).not.toBe('9999px');
   });
 
   it('never changes the layout', async () => {
-    const root = await render();
+    const root = await render(theme);
     const boxes = (scope: string): string[] =>
       [...root.querySelectorAll(`${scope} > *, ${scope} [data-tes-part]`)]
         .filter((el) => !el.closest('#nested'))
@@ -146,17 +148,31 @@ describe('Christmas decoration', () => {
   });
 
   it('never moves a Tessera button out of its place', async () => {
-    const root = await render();
+    const root = await render(theme);
     expect(pseudo(root, '#on .t-date [data-tes-part="toggle"]', '').position).toBe('absolute');
   });
 
   it('keeps photo avatars round', async () => {
-    const root = await render();
+    const root = await render(theme);
     expect(pseudo(root, '#on .t-avatar > img', '').borderRadius).not.toBe('0px');
   });
 
+  it('centres the calendar cap in right-to-left layouts', async () => {
+    const root = await render(theme);
+    const day = root.querySelector<HTMLElement>(
+      '#rtl [aria-selected="true"] > [data-tes-part="day"]',
+    )!;
+    const cap = getComputedStyle(day, '::before');
+    // With both insets set, `left` is the declared 0: the used offset is in the auto margin.
+    const left = parseFloat(cap.left) + parseFloat(cap.marginLeft);
+    const right = day.clientWidth - left - parseFloat(cap.width);
+    expect(Math.abs(left - right)).toBeLessThan(1);
+  });
+});
+
+describe('Christmas gift card', () => {
   it('keeps the gift ribbon above the card content', async () => {
-    const root = await render();
+    const root = await render('christmas');
     const card = root.querySelector<HTMLElement>('#on .t-gift')!;
     const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT, (node) =>
       node.textContent?.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP,
@@ -167,17 +183,5 @@ describe('Christmas decoration', () => {
     const ribbonBottom =
       card.getBoundingClientRect().top + parseFloat(ribbon.top) + parseFloat(ribbon.height);
     expect(ribbonBottom).toBeLessThanOrEqual(text.getBoundingClientRect().top);
-  });
-
-  it('centres the calendar cap in right-to-left layouts', async () => {
-    const root = await render();
-    const day = root.querySelector<HTMLElement>(
-      '#rtl [aria-selected="true"] > [data-tes-part="day"]',
-    )!;
-    const cap = getComputedStyle(day, '::before');
-    // With both insets set, `left` is the declared 0: the used offset is in the auto margin.
-    const left = parseFloat(cap.left) + parseFloat(cap.marginLeft);
-    const right = day.clientWidth - left - parseFloat(cap.width);
-    expect(Math.abs(left - right)).toBeLessThan(1);
   });
 });

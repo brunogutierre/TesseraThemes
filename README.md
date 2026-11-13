@@ -4,7 +4,7 @@ Seasonal themes for [Tessera](https://github.com/brunogutierre/Tessera), the Ang
 
 **Storybook:** https://brunogutierre.github.io/TesseraThemes/
 
-> **Status:** under construction. The Christmas theme is in progress; Halloween follows.
+> **Status:** Christmas and Halloween are complete; Christmas has its final art, Halloween uses placeholders until its final art lands.
 
 ## Goal
 
@@ -47,6 +47,7 @@ Show how a design system is extended by a separate package: new themes registere
 - **Stickers share one rule.** One rule per theme holds what every sticker needs (empty content, absolute position, the switches, `var(--tt-decor-image, var(--tt-sticker))`); component rules set only `--tt-sticker` and geometry. Stickers poke out only at block-start or inline-start, never over a control. A blanket `animation: none` was rejected: it would also stop Tessera's own reduced-motion spinner pulse.
 - **The rules are tests, not guidelines.** A contract test walks the package's CSS object model: every pseudo-element it creates must be empty, inert and switchable, and every animation pausable. `check:hooks` fails when the CSS uses a Tessera class, part or token the installed Tessera lacks. Each theme is tested for the full semantic token set and Tessera's 49 contrast pairs (plus its own) in light and dark, with a harness first proven on Tessera's Enterprise theme.
 - **Christmas palette.** Berry red for actions, a holly-green focus ring that shows around red buttons (gold in dark mode), gold warnings and a crimson danger, kept apart from the berry red so an error never looks like a call to action. Both modes pass Tessera's 49 contrast pairs plus the theme's own.
+- **Halloween palette and motifs.** Pumpkin orange for actions, a purple focus ring (slime green in dark mode), slime-green success, a candy-corn warning and a blood-red danger kept apart from the orange; parchment by day and a deep purple night in dark mode. Bats, candy corn, a witch hat, slime, bunting, ghosts and a hanging spider follow the same shared sticker rule and placement rules as Christmas, with `ttDecor="web"` and `ttDecor="ghost"` card motifs.
 - **Art as files, briefed for an illustrator.** Each sticker and tile is an SVG in `styles/art/<theme>/`, referenced by path from the CSS (app bundlers copy or inline it). Final art replaces a file in place, with no code change; [`docs/art/christmas.md`](docs/art/christmas.md) and [`docs/art/halloween.md`](docs/art/halloween.md) specify every file (viewBox, display size, use, palette, outline). The Christmas artwork includes 20 final decorative SVGs and 14 festive icons; [the local art gallery](docs/art/christmas-preview.html) previews them on light and dark backgrounds.
 - **Own prefix (`tt`).** Components, directives, CSS variables and attributes use `tt`; themes still register under Tessera's `data-tes-theme`, so one switch drives both.
 

@@ -8,6 +8,7 @@ import { spawnSync } from 'node:child_process';
 const ALL = [
   ...['christmas', 'halloween', 'enterprise'].flatMap((t) => [`${t}-light`, `${t}-dark`]),
   'christmas-light-rtl',
+  'halloween-dark-rtl',
 ];
 const separator = process.argv.indexOf('--');
 const selected = process.argv.slice(2, separator === -1 ? undefined : separator);
