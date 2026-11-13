@@ -6,7 +6,7 @@ import { spawnSync } from 'node:child_process';
 // Each seasonal theme joins this list in the PR that adds it. Enterprise is the undecorated base.
 // A `-rtl` suffix runs the stories right to left.
 const ALL = [
-  ...['christmas', 'enterprise'].flatMap((t) => [`${t}-light`, `${t}-dark`]),
+  ...['christmas', 'halloween', 'enterprise'].flatMap((t) => [`${t}-light`, `${t}-dark`]),
   'christmas-light-rtl',
 ];
 const separator = process.argv.indexOf('--');

@@ -17,6 +17,7 @@ const testGlobals = typeof __TT_GLOBALS__ === 'undefined' ? undefined : __TT_GLO
  */
 const THEMES = [
   { value: 'christmas', title: 'Christmas' },
+  { value: 'halloween', title: 'Halloween' },
   { value: 'enterprise', title: 'Enterprise (Tessera base)' },
 ];
 
