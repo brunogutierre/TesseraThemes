@@ -6,7 +6,7 @@ import { playwright } from '@vitest/browser-playwright';
 import { defineConfig } from 'vitest/config';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
-const theme = process.env['TT_THEME'] ?? 'enterprise';
+const theme = process.env['TT_THEME'] ?? 'christmas';
 const mode = process.env['TT_MODE'] ?? 'light';
 
 /**

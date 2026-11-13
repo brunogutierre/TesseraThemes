@@ -4,7 +4,7 @@ Seasonal themes for [Tessera](https://github.com/brunogutierre/Tessera), the Ang
 
 **Storybook:** https://brunogutierre.github.io/TesseraThemes/
 
-> **Status:** under construction. The workspace and the extension foundation come first; the themes follow.
+> **Status:** under construction. The Christmas theme is in progress; Halloween follows.
 
 ## Goal
 
@@ -44,6 +44,7 @@ Show how a design system is extended by a separate package: new themes registere
 - **`ttDecor` only writes an attribute.** The directive sets a typed `data-tt-decor` and adds no markup; the motif names live in `TtDecorRegistry`, which each theme extends. Styling stays in CSS, where the theme is already known.
 - **Decoration obeys two global switches.** Decoration reads `display: var(--tt-decor-display, …)` and `animation-play-state: var(--tt-play, …)`; one stylesheet turns them off in forced colors and print and pauses them under reduced motion. A blanket `animation: none` was rejected: it would also stop Tessera's own reduced-motion spinner pulse.
 - **The rules are tests, not guidelines.** A contract test walks the package's CSS object model: every pseudo-element it creates must be empty, inert and switchable, and every animation pausable. `check:hooks` fails when the CSS uses a Tessera class, part or token the installed Tessera lacks. Each theme is tested for the full semantic token set and Tessera's 49 contrast pairs (plus its own) in light and dark, with a harness first proven on Tessera's Enterprise theme.
+- **Christmas palette.** Berry red for actions, a holly-green focus ring that shows around red buttons (gold in dark mode), gold warnings and a crimson danger, kept apart from the berry red so an error never looks like a call to action. Both modes pass Tessera's 49 contrast pairs plus the theme's own.
 - **Own prefix (`tt`).** Components, directives, CSS variables and attributes use `tt`; themes still register under Tessera's `data-tes-theme`, so one switch drives both.
 
 ## Usage

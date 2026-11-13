@@ -4,7 +4,7 @@
 import { spawnSync } from 'node:child_process';
 
 // Each seasonal theme joins this list in the PR that adds it. Enterprise is the undecorated base.
-const ALL = ['enterprise'].flatMap((t) => [`${t}-light`, `${t}-dark`]);
+const ALL = ['christmas', 'enterprise'].flatMap((t) => [`${t}-light`, `${t}-dark`]);
 const separator = process.argv.indexOf('--');
 const selected = process.argv.slice(2, separator === -1 ? undefined : separator);
 const vitestArgs = separator === -1 ? [] : process.argv.slice(separator + 1);
