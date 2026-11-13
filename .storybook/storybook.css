@@ -1,6 +1,7 @@
 /* Storybook-only helpers for documentation stories. Not part of the package. */
 .sb-show-main {
-  background-color: var(--tes-color-bg);
+  /* Transparent, so the themed <html> paints the page, background art included. */
+  background-color: transparent;
 }
 
 /* Stories that compare several themes side by side. */

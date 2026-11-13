@@ -1,0 +1,127 @@
+/*
+ * Christmas theme: warm cream and deep pine, berry red for actions, gold accents.
+ * Every color is declared once as `light-dark(<light>, <dark>)`, like Tessera's themes.
+ */
+@layer tessera-themes.themes {
+  [data-tes-theme='christmas'] {
+    /* Festive tokens, read by the decoration */
+    --tt-berry: light-dark(oklch(0.5 0.18 25), oklch(0.66 0.19 25));
+    --tt-holly: light-dark(oklch(0.42 0.1 155), oklch(0.62 0.12 155));
+    --tt-gold: light-dark(oklch(0.72 0.14 80), oklch(0.82 0.14 85));
+    --tt-snow: light-dark(oklch(1 0 0), oklch(0.97 0.01 230));
+    --tt-snow-shade: light-dark(oklch(0.72 0.03 230), oklch(0.8 0.03 230));
+
+    /* Surfaces and text */
+    --tes-color-bg: light-dark(oklch(0.975 0.012 85), oklch(0.19 0.03 165));
+    --tes-color-surface: light-dark(oklch(0.995 0.004 85), oklch(0.23 0.035 165));
+    --tes-color-surface-raised: light-dark(oklch(1 0 0), oklch(0.27 0.035 165));
+    --tes-color-surface-sunken: light-dark(oklch(0.95 0.015 85), oklch(0.16 0.025 165));
+    --tes-color-backdrop: light-dark(
+      color-mix(in oklch, oklch(0.2 0.04 160) 45%, transparent),
+      color-mix(in oklch, oklch(0.1 0.02 160) 70%, transparent)
+    );
+    --tes-color-text: light-dark(oklch(0.24 0.04 160), oklch(0.95 0.015 85));
+    --tes-color-text-muted: light-dark(oklch(0.45 0.035 160), oklch(0.77 0.03 120));
+    --tes-color-text-disabled: light-dark(oklch(0.68 0.02 160), oklch(0.5 0.025 150));
+    --tes-color-text-inverse: light-dark(oklch(0.97 0.01 85), oklch(0.2 0.03 165));
+    --tes-color-border: light-dark(oklch(0.88 0.02 120), oklch(0.34 0.035 160));
+    --tes-color-border-strong: light-dark(oklch(0.55 0.04 150), oklch(0.62 0.04 150));
+
+    /* Brand and interaction: berry red, with a holly-green focus ring that shows on red */
+    --tes-color-primary: light-dark(oklch(0.5 0.18 25), oklch(0.72 0.16 25));
+    --tes-color-primary-hover: light-dark(oklch(0.45 0.17 25), oklch(0.78 0.14 25));
+    --tes-color-primary-active: light-dark(oklch(0.4 0.15 25), oklch(0.83 0.11 25));
+    --tes-color-on-primary: light-dark(oklch(1 0 0), oklch(0.2 0.05 25));
+    --tes-color-primary-subtle: light-dark(oklch(0.94 0.03 25), oklch(0.3 0.07 25));
+    --tes-color-on-primary-subtle: light-dark(oklch(0.4 0.15 25), oklch(0.88 0.06 25));
+    --tes-color-neutral-subtle: light-dark(oklch(0.94 0.015 120), oklch(0.29 0.03 160));
+    --tes-color-neutral-subtle-hover: light-dark(oklch(0.9 0.02 120), oklch(0.34 0.035 160));
+    --tes-color-hover: light-dark(
+      color-mix(in oklch, oklch(0.24 0.04 160) 6%, transparent),
+      color-mix(in oklch, oklch(0.95 0.015 85) 8%, transparent)
+    );
+    --tes-color-selected: light-dark(oklch(0.93 0.035 25), oklch(0.32 0.07 25));
+    --tes-color-focus: light-dark(oklch(0.45 0.12 155), oklch(0.82 0.14 85));
+
+    /* Status: evergreen success, gold warning, crimson danger kept apart from berry red */
+    --tes-color-success: light-dark(oklch(0.48 0.11 155), oklch(0.75 0.13 155));
+    --tes-color-success-hover: light-dark(oklch(0.43 0.1 155), oklch(0.8 0.12 155));
+    --tes-color-on-success: light-dark(oklch(1 0 0), oklch(0.18 0.04 155));
+    --tes-color-success-subtle: light-dark(oklch(0.94 0.03 155), oklch(0.28 0.05 155));
+    --tes-color-success-text: light-dark(oklch(0.4 0.1 155), oklch(0.82 0.11 155));
+    --tes-color-warning: light-dark(oklch(0.64 0.14 70), oklch(0.82 0.14 85));
+    --tes-color-warning-hover: light-dark(oklch(0.7 0.14 72), oklch(0.86 0.12 85));
+    --tes-color-on-warning: light-dark(oklch(0.18 0.03 70), oklch(0.2 0.04 85));
+    --tes-color-warning-subtle: light-dark(oklch(0.95 0.04 85), oklch(0.3 0.06 85));
+    --tes-color-warning-text: light-dark(oklch(0.46 0.1 70), oklch(0.86 0.12 85));
+    --tes-color-danger: light-dark(oklch(0.48 0.17 355), oklch(0.72 0.15 355));
+    --tes-color-danger-hover: light-dark(oklch(0.43 0.16 355), oklch(0.78 0.13 355));
+    --tes-color-on-danger: light-dark(oklch(1 0 0), oklch(0.2 0.05 355));
+    --tes-color-danger-subtle: light-dark(oklch(0.94 0.03 355), oklch(0.3 0.07 355));
+    --tes-color-danger-text: light-dark(oklch(0.42 0.16 355), oklch(0.84 0.09 355));
+    --tes-color-info: light-dark(oklch(0.5 0.1 230), oklch(0.76 0.09 230));
+    --tes-color-info-hover: light-dark(oklch(0.45 0.1 230), oklch(0.81 0.08 230));
+    --tes-color-on-info: light-dark(oklch(1 0 0), oklch(0.2 0.04 230));
+    --tes-color-info-subtle: light-dark(oklch(0.94 0.025 230), oklch(0.29 0.05 230));
+    --tes-color-info-text: light-dark(oklch(0.42 0.09 230), oklch(0.84 0.07 230));
+
+    /* Typography: a rounded, friendly sans; apps may load Nunito, otherwise system fonts */
+    --tes-font-sans:
+      'Nunito Variable', 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue',
+      Arial, sans-serif;
+    --tes-font-mono:
+      ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+    --tes-text-xs: var(--tes-size-12);
+    --tes-text-sm: var(--tes-size-14);
+    --tes-text-md: var(--tes-size-16);
+    --tes-text-lg: var(--tes-size-18);
+    --tes-text-xl: var(--tes-size-20);
+    --tes-text-2xl: var(--tes-size-24);
+    --tes-text-3xl: var(--tes-size-32);
+    --tes-leading-tight: 1.25;
+    --tes-leading-normal: 1.5;
+    --tes-weight-regular: 400;
+    --tes-weight-medium: 600;
+    --tes-weight-semibold: 700;
+    --tes-weight-bold: 800;
+    --tes-numeric: normal;
+
+    /* Space and density: roomy, so decoration has air around it */
+    --tes-space-1: var(--tes-size-2);
+    --tes-space-2: var(--tes-size-4);
+    --tes-space-3: var(--tes-size-8);
+    --tes-space-4: var(--tes-size-12);
+    --tes-space-5: var(--tes-size-16);
+    --tes-space-6: var(--tes-size-20);
+    --tes-space-7: var(--tes-size-28);
+    --tes-space-8: var(--tes-size-40);
+    --tes-control-height-sm: var(--tes-size-28);
+    --tes-control-height-md: var(--tes-size-36);
+    --tes-control-height-lg: var(--tes-size-44);
+    --tes-control-padding-x: var(--tes-size-14);
+    --tes-control-gap: var(--tes-size-8);
+
+    /* Shape: soft, like wrapped presents */
+    --tes-radius-sm: var(--tes-size-4);
+    --tes-radius-md: var(--tes-size-8);
+    --tes-radius-lg: var(--tes-size-14);
+    --tes-radius-full: 9999px;
+    --tes-border-width: 1px;
+    --tes-focus-ring-width: 2px;
+    --tes-focus-ring-offset: 2px;
+
+    /* Elevation: warm shadows */
+    --tes-shadow-sm: 0 1px 2px light-dark(oklch(0.3 0.04 60 / 0.1), oklch(0.05 0.02 160 / 0.5));
+    --tes-shadow-md: 0 4px 14px -2px
+      light-dark(oklch(0.3 0.04 60 / 0.14), oklch(0.05 0.02 160 / 0.6));
+    --tes-shadow-lg: 0 14px 34px -6px
+      light-dark(oklch(0.3 0.04 60 / 0.18), oklch(0.05 0.02 160 / 0.7));
+
+    /* Motion: gentle */
+    --tes-duration-fast: var(--tes-time-120);
+    --tes-duration-normal: var(--tes-time-200);
+    --tes-duration-slow: var(--tes-time-400);
+    --tes-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+    --tes-easing-emphasized: cubic-bezier(0.05, 0.7, 0.1, 1);
+  }
+}

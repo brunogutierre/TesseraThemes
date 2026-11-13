@@ -15,7 +15,10 @@ const testGlobals = typeof __TT_GLOBALS__ === 'undefined' ? undefined : __TT_GLO
  * Toolbar themes. Enterprise is Tessera's own, undecorated theme: the baseline every seasonal
  * theme is compared with. Each seasonal theme joins this list in the PR that adds it.
  */
-const THEMES = [{ value: 'enterprise', title: 'Enterprise (Tessera base)' }];
+const THEMES = [
+  { value: 'christmas', title: 'Christmas' },
+  { value: 'enterprise', title: 'Enterprise (Tessera base)' },
+];
 
 /**
  * Mirrors the toolbar globals onto <html>, exactly like a static `data-tes-*` attribute in an
@@ -66,7 +69,7 @@ const preview: Preview = {
       },
     },
   },
-  initialGlobals: { theme: 'enterprise', mode: 'light', dir: 'ltr', ...testGlobals },
+  initialGlobals: { theme: 'christmas', mode: 'light', dir: 'ltr', ...testGlobals },
   parameters: {
     layout: 'padded',
     controls: { expanded: true, sort: 'requiredFirst' },

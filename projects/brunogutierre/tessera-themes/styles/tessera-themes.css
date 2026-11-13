@@ -6,4 +6,5 @@
  */
 @layer tessera-themes.tokens, tessera-themes.themes, tessera-themes.decor;
 
+@import './themes/christmas.css';
 @import './decor/switches.css';
