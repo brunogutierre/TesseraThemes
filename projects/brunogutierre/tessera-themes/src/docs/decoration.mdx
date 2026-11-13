@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Decoration rules" />
+
+# Decoration rules
+
+Seasonal decoration is CSS on [Tessera's public styling API](https://brunogutierre.github.io/Tessera/?path=/docs/foundations-extending-tessera--docs): host classes (`.tes-card`), state attributes, parts (`[data-tes-part='header']`) and component tokens. These rules keep it accessible; tests enforce each one.
+
+| Rule                                                      | Why                                                      | Enforced by                |
+| --------------------------------------------------------- | -------------------------------------------------------- | -------------------------- |
+| Pseudo-elements are empty: `content: ''`                  | Screen readers read generated text                       | Contract test              |
+| `pointer-events: none`, positioned inside the component   | Sizes and target areas never change                      | Contract test, screenshots |
+| `display: var(--tt-decor-display, block)`                 | Forced colors and print hide all decoration              | Contract test              |
+| `animation-play-state: var(--tt-play, running)`           | Reduced motion pauses every animation on its first frame | Contract test              |
+| No information by decoration alone                        | A seal or color never replaces Tessera's text            | Review                     |
+| Never cover the focus ring                                | WCAG 2.4.11                                              | Screenshots                |
+| Only public Tessera hooks                                 | A Tessera release cannot break a theme silently          | `npm run check:hooks`      |
+| Every semantic token, 49 contrast pairs in light and dark | Same guarantees as Tessera's themes                      | Theme tests                |
+
+## Example
+
+```css
+@layer tessera-themes.decor {
+  [data-tes-theme='christmas'] .tes-card::before {
+    content: '';
+    position: absolute;
+    inset: -0.25rem 0 auto;
+    block-size: 0.75rem;
+    display: var(--tt-decor-display, block);
+    pointer-events: none;
+    background: var(--tt-snowcap) top / auto 100% repeat-x;
+  }
+
+  [data-tes-theme='christmas'] .tes-card[data-tt-decor='none']::before {
+    display: none;
+  }
+}
+```
+
+## Switches
+
+| Condition                        | Variable                   | Effect                            |
+| -------------------------------- | -------------------------- | --------------------------------- |
+| `prefers-reduced-motion: reduce` | `--tt-play: paused`        | Animations show their first frame |
+| `forced-colors: active`, `print` | `--tt-decor-display: none` | Decoration disappears             |

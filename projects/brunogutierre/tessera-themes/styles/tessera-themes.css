@@ -5,3 +5,5 @@
  * override Tessera, while an app's unlayered CSS still overrides both, without !important.
  */
 @layer tessera-themes.tokens, tessera-themes.themes, tessera-themes.decor;
+
+@import './decor/switches.css';

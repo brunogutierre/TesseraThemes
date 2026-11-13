@@ -42,6 +42,8 @@ Show how a design system is extended by a separate package: new themes registere
 - **Cascade layers after Tessera's.** `tessera-themes.css` declares `tessera-themes.tokens`, `.themes` and `.decor`, so the themes override Tessera's components, decoration overrides the themes, and any unlayered app CSS still wins. A spec checks that order.
 - **Theme names through module augmentation.** The package augments Tessera's `TesThemeRegistry` and registers the same names at runtime with `provideSeasonalThemes()`. A type test keeps the two lists equal, and a consumer build confirms the augmentation survives in the published typings.
 - **`ttDecor` only writes an attribute.** The directive sets a typed `data-tt-decor` and adds no markup; the motif names live in `TtDecorRegistry`, which each theme extends. Styling stays in CSS, where the theme is already known.
+- **Decoration obeys two global switches.** Decoration reads `display: var(--tt-decor-display, …)` and `animation-play-state: var(--tt-play, …)`; one stylesheet turns them off in forced colors and print and pauses them under reduced motion. A blanket `animation: none` was rejected: it would also stop Tessera's own reduced-motion spinner pulse.
+- **The rules are tests, not guidelines.** A contract test walks the package's CSS object model: every pseudo-element it creates must be empty, inert and switchable, and every animation pausable. `check:hooks` fails when the CSS uses a Tessera class, part or token the installed Tessera lacks. Each theme is tested for the full semantic token set and Tessera's 49 contrast pairs (plus its own) in light and dark, with a harness first proven on Tessera's Enterprise theme.
 - **Own prefix (`tt`).** Components, directives, CSS variables and attributes use `tt`; themes still register under Tessera's `data-tes-theme`, so one switch drives both.
 
 ## Usage
@@ -76,6 +78,7 @@ npm install
 npm test               # unit tests in headless Chromium
 npm run test:coverage  # with the 80% coverage gate
 npm run lint
+npm run check:hooks    # every Tessera class, part and token the CSS uses exists
 npm run format:check
 npm run check:package  # build, publint, attw, npm pack --dry-run
 npm run storybook      # http://localhost:6006
