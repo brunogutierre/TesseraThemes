@@ -14,6 +14,7 @@
     "test:watch": "ng test @brunogutierre/tessera-themes",
     "test:coverage": "ng test @brunogutierre/tessera-themes --watch=false --coverage",
     "lint": "ng lint",
+    "check:hooks": "node scripts/check-hooks.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check:package": "npm run build && publint dist/brunogutierre/tessera-themes && cd dist/brunogutierre/tessera-themes && attw --pack . --profile esm-only && npm pack --dry-run",

@@ -36,6 +36,9 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Tessera hooks exist
+        run: npm run check:hooks
+
       - name: Unit tests with coverage
         run: npm run test:coverage
 
