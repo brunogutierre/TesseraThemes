@@ -2,9 +2,9 @@
 
 Art for the Christmas theme of `@brunogutierre/tessera-themes`. The theme decorates every Tessera
 component with small illustrated stickers (bows, holly, hats, bells…) and a few tileable strips.
-The placeholders in [`styles/art/christmas/`](../../projects/brunogutierre/tessera-themes/styles/art/christmas/)
-work but are rough; this brief describes the final art. **Replace each file in place, with the same
-name and viewBox**: the CSS reads the files by path, so no code changes are needed.
+The final SVGs live in [`styles/art/christmas/`](../../projects/brunogutierre/tessera-themes/styles/art/christmas/).
+This brief defines their style and delivery contract. **Keep each filename and viewBox** when
+revising the art: the CSS reads the files by path, so no code changes are needed.
 
 ## Style guide
 
@@ -57,50 +57,50 @@ illustration.
 
 Display size is the CSS size at 1×; the art must stay crisp at 2× and 3×.
 
-| File                  | viewBox     | Display size | Kind      | Used by                                                                                    | Description                                                                                                                                                                                                            | Status                            |
-| --------------------- | ----------- | ------------ | --------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| `bow.svg`             | 0 0 32 20   | 27×18 px     | sticker   | Primary buttons (corner), gift cards (on the ribbon)                                       | Gold bow: two round loops, two short tails, a round knot. Must stand out on a berry-red button.                                                                                                                        | placeholder                       |
-| `holly.svg`           | 0 0 32 24   | 38×29 px     | sticker   | Secondary buttons, elevated cards, danger alerts and toasts, fieldset legends, form fields | Two holly leaves (lime and leaf green, spiky edges, a center vein) under three glossy red berries.                                                                                                                     | placeholder                       |
-| `snowcap.svg`         | 0 0 40 12   | 40×13 px     | tile (x)  | Top edge of cards, menus, select/listbox panels, tooltips                                  | Fresh snow lying on an edge: flat white top, puffy scalloped lower edge with the outline only on that lower edge. Seamless left/right at the same height. Stretched slightly in height (`preserveAspectRatio="none"`). | placeholder                       |
-| `santa-hat.svg`       | 0 0 32 26   | 38×31 px     | sticker   | Avatars (top left, tilted)                                                                 | Red Santa hat flopping to the right, white fluffy brim, white pompom. The brim must sit flat at the bottom so it rests on a round avatar.                                                                              | placeholder                       |
-| `bell.svg`            | 0 0 24 24   | 29×29 px     | sticker   | Warning alerts and toasts, warning badges                                                  | Gold jingle bell with a red band, a small red bow on top, visible clapper.                                                                                                                                             | placeholder                       |
-| `gift.svg`            | 0 0 24 24   | 29×29 px     | sticker   | Success alerts and toasts                                                                  | Red present with a lime ribbon cross and a gold bow, lid slightly wider than the box.                                                                                                                                  | placeholder                       |
-| `snowflake.svg`       | 0 0 24 24   | 15–29 px     | flat      | Info alerts and toasts                                                                     | Flat red (`#EF3B24`) six-armed snowflake with two pairs of branches per arm; no outline. Must survive at 15 px.                                                                                                        | placeholder                       |
-| `sparkles.svg`        | 0 0 24 24   | 15–22 px     | flat      | Solid badges, stats                                                                        | A cluster: a big red four-point star, a small yellow four-point star and a lime plus sign. No outline.                                                                                                                 | placeholder                       |
-| `candy-cane.svg`      | 0 0 24 24   | 18×18 px     | sticker   | Tags (start corner)                                                                        | Candy cane with diagonal red and white stripes, hook at the top right.                                                                                                                                                 | placeholder                       |
-| `stocking.svg`        | 0 0 24 28   | 29×34 px     | sticker   | Cards with `ttDecor="stocking"` (hanging on the corner)                                    | Red stocking, white fluffy cuff, gold heel and toe, a few stitch marks.                                                                                                                                                | placeholder                       |
-| `ornament.svg`        | 0 0 24 24   | 16×16 px     | sticker   | Slider thumb                                                                               | Round red bauble with a gold cap and a gold band, a white gloss mark. Reads at 16 px.                                                                                                                                  | placeholder                       |
-| `switch-knob-on.svg`  | 0 0 24 24   | 14×14 px     | flat      | Switch knob when on (sits on berry red)                                                    | Simple white snowflake, three thick strokes; must read at 14 px. No outline.                                                                                                                                           | placeholder                       |
-| `switch-knob-off.svg` | 0 0 24 24   | 14×14 px     | flat      | Switch knob when off (sits on a pale or dark neutral)                                      | Same snowflake in mid grey-green `#6F7F75` (3:1 against both neutrals).                                                                                                                                                | placeholder                       |
-| `star-mask.svg`       | 0 0 24 24   | 14×14 px     | mask      | Checkbox check mark                                                                        | Five-point star, slightly rounded points, filling about 90% of the box.                                                                                                                                                | placeholder                       |
-| `pattern.svg`         | 0 0 160 160 | 160×160 px   | tile (2D) | Themed page background (shown at ~14% strength behind a veil)                              | Sparse wrapping-paper scatter: four-point stars (red, yellow), lime plus signs, two small flat red snowflakes. Lots of empty space. Seamless in both directions.                                                       | placeholder                       |
-| `lights.svg`          | 0 0 48 16   | 48×16 px     | tile (x)  | Dialog headers, toolbars, open accordion items, table headers, calendar header             | A string of Christmas lights: a dark wire swinging gently, four bulbs (red, yellow, lime, red light) hanging from it with small caps. Seamless left/right.                                                             | placeholder                       |
-| `separator-star.svg`  | 0 0 12 12   | 10×10 px     | mask      | Breadcrumb separators                                                                      | Small five-point star.                                                                                                                                                                                                 | needed (PR actions)               |
-| `ornament-cap.svg`    | 0 0 16 10   | 14×9 px      | sticker   | Selected calendar day (sits on top of the round day button)                                | The gold cap and hook of a bauble, as if the round day button were the ball.                                                                                                                                           | placeholder                       |
-| `wreath.svg`          | 0 0 32 32   | 32×32 px     | sticker   | Dialog close corner, empty states                                                          | Round green wreath with red berries and a red bow at the bottom.                                                                                                                                                       | planned (`tt-seal`, empty states) |
-| `star-tree-top.svg`   | 0 0 24 24   | 18×18 px     | sticker   | Calendar days 24 and 25 December                                                           | Gold five-point star with an outline and small red sparkle rays.                                                                                                                                                       | placeholder                       |
+| File                  | viewBox     | Display size | Kind      | Used by                                                                                    | Description                                                                                                                                                                                                            | Status |
+| --------------------- | ----------- | ------------ | --------- | ------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
+| `bow.svg`             | 0 0 32 20   | 27×18 px     | sticker   | Primary buttons (corner), gift cards (on the ribbon)                                       | Gold bow: two round loops, two short tails, a round knot. Must stand out on a berry-red button.                                                                                                                        | final  |
+| `holly.svg`           | 0 0 32 24   | 38×29 px     | sticker   | Secondary buttons, elevated cards, danger alerts and toasts, fieldset legends, form fields | Two holly leaves (lime and leaf green, spiky edges, a center vein) under three glossy red berries.                                                                                                                     | final  |
+| `snowcap.svg`         | 0 0 40 12   | 40×13 px     | tile (x)  | Top edge of cards, menus, select/listbox panels, tooltips                                  | Fresh snow lying on an edge: flat white top, puffy scalloped lower edge with the outline only on that lower edge. Seamless left/right at the same height. Stretched slightly in height (`preserveAspectRatio="none"`). | final  |
+| `santa-hat.svg`       | 0 0 32 26   | 38×31 px     | sticker   | Avatars (top left, tilted)                                                                 | Red Santa hat flopping to the right, white fluffy brim, white pompom. The brim must sit flat at the bottom so it rests on a round avatar.                                                                              | final  |
+| `bell.svg`            | 0 0 24 24   | 29×29 px     | sticker   | Warning alerts and toasts, warning badges                                                  | Gold jingle bell with a red band, a small red bow on top, visible clapper.                                                                                                                                             | final  |
+| `gift.svg`            | 0 0 24 24   | 29×29 px     | sticker   | Success alerts and toasts                                                                  | Red present with a lime ribbon cross and a gold bow, lid slightly wider than the box.                                                                                                                                  | final  |
+| `snowflake.svg`       | 0 0 24 24   | 15–29 px     | flat      | Info alerts and toasts                                                                     | Flat red (`#EF3B24`) six-armed snowflake with two pairs of branches per arm; no outline. Must survive at 15 px.                                                                                                        | final  |
+| `sparkles.svg`        | 0 0 24 24   | 15–22 px     | flat      | Solid badges, stats                                                                        | A cluster: a big red four-point star, a small yellow four-point star and a lime plus sign. No outline.                                                                                                                 | final  |
+| `candy-cane.svg`      | 0 0 24 24   | 18×18 px     | sticker   | Tags (start corner)                                                                        | Candy cane with diagonal red and white stripes, hook at the top right.                                                                                                                                                 | final  |
+| `stocking.svg`        | 0 0 24 28   | 29×34 px     | sticker   | Cards with `ttDecor="stocking"` (hanging on the corner)                                    | Red stocking, white fluffy cuff, gold heel and toe, a few stitch marks.                                                                                                                                                | final  |
+| `ornament.svg`        | 0 0 24 24   | 16×16 px     | sticker   | Slider thumb                                                                               | Round red bauble with a gold cap and a gold band, a white gloss mark. Reads at 16 px.                                                                                                                                  | final  |
+| `switch-knob-on.svg`  | 0 0 24 24   | 14×14 px     | flat      | Switch knob when on (sits on berry red)                                                    | Simple white snowflake, three thick strokes; must read at 14 px. No outline.                                                                                                                                           | final  |
+| `switch-knob-off.svg` | 0 0 24 24   | 14×14 px     | flat      | Switch knob when off (sits on a pale or dark neutral)                                      | Same snowflake in mid grey-green `#6F7F75` (3:1 against both neutrals).                                                                                                                                                | final  |
+| `star-mask.svg`       | 0 0 24 24   | 14×14 px     | mask      | Checkbox check mark                                                                        | Five-point star, slightly rounded points, filling about 90% of the box.                                                                                                                                                | final  |
+| `pattern.svg`         | 0 0 160 160 | 160×160 px   | tile (2D) | Themed page background (shown at ~14% strength behind a veil)                              | Sparse wrapping-paper scatter: four-point stars (red, yellow), lime plus signs, two small flat red snowflakes. Lots of empty space. Seamless in both directions.                                                       | final  |
+| `lights.svg`          | 0 0 48 16   | 48×16 px     | tile (x)  | Dialog headers, toolbars, open accordion items, table headers, calendar header             | A string of Christmas lights: a dark wire swinging gently, four bulbs (red, yellow, lime, red light) hanging from it with small caps. Seamless left/right.                                                             | final  |
+| `separator-star.svg`  | 0 0 12 12   | 10×10 px     | mask      | Breadcrumb separators                                                                      | Small five-point star.                                                                                                                                                                                                 | final  |
+| `ornament-cap.svg`    | 0 0 16 10   | 14×9 px      | sticker   | Selected calendar day (sits on top of the round day button)                                | The gold cap and hook of a bauble, as if the round day button were the ball.                                                                                                                                           | final  |
+| `wreath.svg`          | 0 0 32 32   | 32×32 px     | sticker   | Dialog close corner, empty states                                                          | Round green wreath with red berries and a red bow at the bottom.                                                                                                                                                       | final  |
+| `star-tree-top.svg`   | 0 0 24 24   | 18×18 px     | sticker   | Calendar days 24 and 25 December                                                           | Gold five-point star with an outline and small red sparkle rays.                                                                                                                                                       | final  |
 
 ## Festive icons (`tt-icon`, two-tone illustrated)
 
 24×24 viewBox, displayed at 16–32 px. Unlike the stickers, icons have **meaning** and are named by
 what they show. Same outline and palette. Planned for the `tt-icon` component.
 
-| File                   | Description                                                      |
-| ---------------------- | ---------------------------------------------------------------- |
-| `icon-tree.svg`        | Christmas tree: three green tiers, gold star on top, two baubles |
-| `icon-gift.svg`        | Present seen from the front (may reuse `gift.svg`)               |
-| `icon-bell.svg`        | Jingle bell (may reuse `bell.svg`)                               |
-| `icon-star.svg`        | Gold star                                                        |
-| `icon-snowflake.svg`   | Snowflake with outline (a stronger version of `snowflake.svg`)   |
-| `icon-candy-cane.svg`  | Candy cane                                                       |
-| `icon-stocking.svg`    | Stocking                                                         |
-| `icon-ornament.svg`    | Bauble                                                           |
-| `icon-wreath.svg`      | Wreath                                                           |
-| `icon-snowman.svg`     | Snowman face with a black top hat, carrot nose, rosy cheeks      |
-| `icon-gingerbread.svg` | Gingerbread man with white icing trims                           |
-| `icon-reindeer.svg`    | Smiling reindeer face with small antlers and a red nose          |
-| `icon-santa.svg`       | Smiling Santa face with hat and beard                            |
-| `icon-elf.svg`         | Smiling elf face with a striped hat                              |
+| File                   | Description                                                      | Status |
+| ---------------------- | ---------------------------------------------------------------- | ------ |
+| `icon-tree.svg`        | Christmas tree: three green tiers, gold star on top, two baubles | final  |
+| `icon-gift.svg`        | Present seen from the front (may reuse `gift.svg`)               | final  |
+| `icon-bell.svg`        | Jingle bell (may reuse `bell.svg`)                               | final  |
+| `icon-star.svg`        | Gold star                                                        | final  |
+| `icon-snowflake.svg`   | Snowflake with outline (a stronger version of `snowflake.svg`)   | final  |
+| `icon-candy-cane.svg`  | Candy cane                                                       | final  |
+| `icon-stocking.svg`    | Stocking                                                         | final  |
+| `icon-ornament.svg`    | Bauble                                                           | final  |
+| `icon-wreath.svg`      | Wreath                                                           | final  |
+| `icon-snowman.svg`     | Snowman face with a black top hat, carrot nose, rosy cheeks      | final  |
+| `icon-gingerbread.svg` | Gingerbread man with white icing trims                           | final  |
+| `icon-reindeer.svg`    | Smiling reindeer face with small antlers and a red nose          | final  |
+| `icon-santa.svg`       | Smiling Santa face with hat and beard                            | final  |
+| `icon-elf.svg`         | Smiling elf face with a striped hat                              | final  |
 
 ## Delivery checklist
 
@@ -108,3 +108,18 @@ what they show. Same outline and palette. Planned for the `tt-icon` component.
 2. Run `npm test` (contract and contrast) and `npm run test:stories -- christmas-light christmas-dark`.
 3. Check the Storybook gallery in Christmas light and dark: each sticker reads at its size on both backgrounds.
 4. Update the **Status** column to `final`.
+
+## Delivered art
+
+All 20 decorative assets and 14 festive icons are original SVG drawings, optimized with
+SVGO 4.1 (multipass, precision 1). Names and viewBoxes are preserved.
+The references informed the vivid flat colors, rounded maroon outlines and cheerful shapes;
+no reference illustration was traced. No raster generation or image-generation prompt was used.
+
+Open [the local art gallery](christmas-preview.html) to inspect all assets at their display sizes,
+enlarged on cream and pine, and as repeating strips. Icon SVGs are delivered for the planned
+`tt-icon` component; implementing that component is outside this art delivery.
+
+Validation: `npm test` passes all 32 tests; the Christmas light and dark story runs pass all
+7 stories each, including accessibility checks. The component gallery was visually reviewed
+in both modes. All 34 SVGs pass structure and size checks; the largest is 2,003 bytes.
