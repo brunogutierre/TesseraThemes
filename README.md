@@ -4,7 +4,7 @@ Seasonal themes for [Tessera](https://github.com/brunogutierre/Tessera), the Ang
 
 **Storybook:** https://brunogutierre.github.io/TesseraThemes/
 
-> **Status:** Christmas, Halloween and Easter are complete, including their final SVG artwork.
+> **Status:** Christmas, Halloween and Easter are complete, including their final SVG artwork. Lunar New Year is in progress: its tokens are in place, its decoration is next.
 
 ## Goal
 
@@ -26,12 +26,12 @@ Show how a design system is extended by a separate package: new themes registere
 
 ## Architecture
 
-| Layer          | What it is                                                                                                                                     |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| Themes         | `[data-tes-theme='christmas' \| 'halloween' \| 'easter']` define every Tessera semantic token, in light and dark, plus `--tt-*` festive tokens |
-| Decoration     | Theme-scoped CSS on Tessera's public hooks (`.tes-*`, state attributes, `data-tes-part`, component tokens), in a cascade layer after Tessera's |
-| Opt-in motifs  | A typed attribute directive picks a motif per element (a gift-box card next to a plain one)                                                    |
-| New components | `tt-*` components for decoration that needs real DOM: festive icons, seals and stamps, garlands, ambient effects                               |
+| Layer          | What it is                                                                                                                                                         |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Themes         | `[data-tes-theme='christmas' \| 'halloween' \| 'easter' \| 'lunar-new-year']` define every Tessera semantic token, in light and dark, plus `--tt-*` festive tokens |
+| Decoration     | Theme-scoped CSS on Tessera's public hooks (`.tes-*`, state attributes, `data-tes-part`, component tokens), in a cascade layer after Tessera's                     |
+| Opt-in motifs  | A typed attribute directive picks a motif per element (a gift-box card next to a plain one)                                                                        |
+| New components | `tt-*` components for decoration that needs real DOM: festive icons, seals and stamps, garlands, ambient effects                                                   |
 
 ## Decisions
 
@@ -49,6 +49,7 @@ Show how a design system is extended by a separate package: new themes registere
 - **Christmas palette.** Berry red for actions, a holly-green focus ring that shows around red buttons (gold in dark mode), gold warnings and a crimson danger, kept apart from the berry red so an error never looks like a call to action. Both modes pass Tessera's 49 contrast pairs plus the theme's own.
 - **Halloween palette and motifs.** Pumpkin orange for actions, a purple focus ring (slime green in dark mode), slime-green success, a candy-corn warning and a blood-red danger kept apart from the orange; parchment by day and a deep purple night in dark mode. Bats, candy corn, a witch hat, slime, bunting, ghosts and a hanging spider follow the same shared sticker rule and placement rules as Christmas, with `ttDecor="web"` and `ttDecor="ghost"` card motifs.
 - **Easter palette.** Pastel surfaces need strong actions to stay readable: a deep violet primary with a raspberry focus ring (pink in dark mode), mint success, a yolk-yellow warning, sky-blue info and a red danger kept apart from the festive pink; cream by day and a deep lilac night in dark mode. The roundest radii of the three themes, like an egg. Painted eggs, bunny ears, grass, daisies, tulips, carrots and pastel bunting follow the same shared sticker rule and placement rules, with `ttDecor="bunny"` and `ttDecor="basket"` card motifs. Easter moves every year, so the calendar marks only the selected day.
+- **Lunar New Year palette.** Lacquer red for actions with gold accents and a bronze-gold focus ring (gold in dark mode), jade success, a gold warning, teal info and a cool crimson danger kept apart from the vermilion actions, as in Christmas; rice-paper cream by day and dark red lacquer in dark mode.
 - **Art as files, briefed for an illustrator.** Each sticker and tile is an SVG in `styles/art/<theme>/`, referenced by path from the CSS (app bundlers copy or inline it). Final art replaces a file in place, with no code change; [`docs/art/christmas.md`](docs/art/christmas.md), [`docs/art/halloween.md`](docs/art/halloween.md) and [`docs/art/easter.md`](docs/art/easter.md) specify every file (viewBox, display size, use, palette, outline). Christmas includes 20 decorative SVGs and 14 festive icons; Halloween includes 17 decorative SVGs and 14 festive icons; Easter includes 18 decorative SVGs and 14 festive icons. The local [Christmas](docs/art/christmas-preview.html), [Halloween](docs/art/halloween-preview.html) and [Easter](docs/art/easter-preview.html) art galleries preview them on light and dark backgrounds.
 - **Own prefix (`tt`).** Components, directives, CSS variables and attributes use `tt`; themes still register under Tessera's `data-tes-theme`, so one switch drives both.
 
@@ -69,7 +70,7 @@ bootstrapApplication(App, {
 });
 ```
 
-Importing the package also adds `christmas`, `halloween` and `easter` to Tessera's theme names, so `theme.set('halloween')` and `tesTheme="christmas"` type-check.
+Importing the package also adds `christmas`, `halloween`, `easter` and `lunar-new-year` to Tessera's theme names, so `theme.set('halloween')` and `tesTheme="christmas"` type-check.
 
 Pick a motif for one component, or turn a theme's decoration off, with `ttDecor`:
 

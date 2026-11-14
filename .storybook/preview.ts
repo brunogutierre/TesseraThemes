@@ -19,6 +19,7 @@ const THEMES = [
   { value: 'christmas', title: 'Christmas' },
   { value: 'halloween', title: 'Halloween' },
   { value: 'easter', title: 'Easter' },
+  { value: 'lunar-new-year', title: 'Lunar New Year' },
   { value: 'enterprise', title: 'Enterprise (Tessera base)' },
 ];
 

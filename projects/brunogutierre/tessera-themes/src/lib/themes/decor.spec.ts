@@ -19,6 +19,9 @@ import { TtDecor } from '../decor/decor';
 import { TT_THEMES } from '../core/themes';
 import { loadStyles } from '../../test-utils/styles';
 
+/** Themes whose decoration is in place. Lunar New Year joins when its decoration lands. */
+const DECORATED = TT_THEMES.filter((theme) => theme !== 'lunar-new-year');
+
 const PIXEL =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect width='1' height='1'/%3E%3C/svg%3E";
 
@@ -101,7 +104,7 @@ const pseudo = (root: HTMLElement, selector: string, which: string): CSSStyleDec
 
 beforeAll(loadStyles);
 
-describe.each(TT_THEMES)('%s decoration', (theme) => {
+describe.each(DECORATED)('%s decoration', (theme) => {
   it('draws inert stickers on hosts and parts', async () => {
     const on = (await render(theme)).querySelector<HTMLElement>('#on')!;
     for (const [selector, which] of [
