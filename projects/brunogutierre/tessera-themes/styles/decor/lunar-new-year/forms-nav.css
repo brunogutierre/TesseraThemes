@@ -1,0 +1,104 @@
+/* Lunar New Year decoration: forms and navigation. */
+@layer tessera-themes.decor {
+  @scope ([data-tes-theme='lunar-new-year']) to ([data-tes-theme]:not([data-tes-theme='lunar-new-year'])) {
+    /* Native controls, through Tessera's component tokens, set on the hosts */
+    .tes-checkbox:not(:where([data-tt-decor='none'], [data-tt-decor='none'] *)) {
+      --tes-checkbox-mark: url('../../art/lunar-new-year/coin-mask.svg');
+    }
+
+    .tes-switch:not(:where([data-tt-decor='none'], [data-tt-decor='none'] *)) {
+      --tes-switch-knob: url('../../art/lunar-new-year/coin-knob-off.svg');
+      --tes-switch-knob-checked: url('../../art/lunar-new-year/coin-knob-on.svg');
+    }
+
+    .tes-slider:not(:where([data-tt-decor='none'], [data-tt-decor='none'] *)) {
+      --tes-slider-thumb-image: url('../../art/lunar-new-year/coin.svg');
+      --tes-slider-filled: var(--tt-red);
+    }
+
+    /* Form fields: a plum blossom at the end of the label row. Pink and round, it never reads as a
+       "required" marker. */
+    .tes-form-field::after {
+      --tt-sticker: url('../../art/lunar-new-year/plum-blossom.svg');
+      inset-block-start: 0;
+      inset-inline-end: 0;
+      inline-size: 1rem;
+      block-size: 1rem;
+    }
+
+    /* Fieldsets: a plum blossom right after the legend */
+    .tes-fieldset > [data-tes-part='legend'] {
+      inline-size: fit-content;
+    }
+
+    .tes-fieldset > [data-tes-part='legend']::after {
+      --tt-sticker: url('../../art/lunar-new-year/plum-blossom.svg');
+      inset-block-start: -0.25rem;
+      inset-inline-start: calc(100% + 0.3rem);
+      inline-size: 1.1rem;
+      block-size: 1.1rem;
+    }
+
+    /* Toolbars: a string of lanterns hanging along the top edge */
+    .tes-toolbar::before {
+      --tt-sticker: url('../../art/lunar-new-year/lantern-string.svg');
+      inset-block-start: -0.45rem;
+      inset-inline: 0.5rem;
+      block-size: 0.75rem;
+      background-position: top;
+      background-size: 2.25rem 100%;
+      background-repeat: repeat-x;
+    }
+
+    /* Red and gold stripes: selected tab, open accordion section, table header, paginator, tree */
+    .tes-tabs > [data-tes-part='list'] > [data-tes-part='tab'][aria-selected='true'],
+    .tes-accordion-item
+      > [data-tes-part='heading']
+      > [data-tes-part='trigger'][aria-expanded='true'],
+    .tes-table > thead th {
+      background-image: var(--tt-decor-image, var(--tt-candy-stripe));
+      background-size: 100% 0.25rem;
+      background-position: bottom;
+      background-repeat: no-repeat;
+    }
+
+    .tes-paginator > [data-tes-part='bar'] {
+      background-image: var(--tt-decor-image, var(--tt-candy-stripe));
+      background-size: 100% 0.2rem;
+      background-position: top;
+      background-repeat: no-repeat;
+    }
+
+    .tes-tree [aria-selected='true'] > [data-tes-part='row'] {
+      background-image: var(--tt-decor-image, var(--tt-candy-stripe));
+      background-size: 0.25rem 100%;
+      background-position: left;
+      background-repeat: no-repeat;
+    }
+
+    .tes-tree:dir(rtl) [aria-selected='true'] > [data-tes-part='row'] {
+      background-position: right;
+    }
+
+    /* Calendar: the selected day wears a gold coin. The lunar new year moves every year, so no
+       date is marked. The sticker stacks above neighbouring days. */
+    .tes-calendar [aria-selected='true'] > [data-tes-part='day']::before {
+      --tt-sticker: url('../../art/lunar-new-year/coin.svg');
+      inset-block-start: -0.5rem;
+      inset-inline: 0;
+      margin-inline: auto;
+      inline-size: 0.65rem;
+      block-size: 0.65rem;
+      z-index: 1;
+    }
+
+    /* Clouds on the top edge of inputs and lists, as a thin band clear of the text */
+    :is(input.tes-input, textarea.tes-input),
+    .tes-listbox > [data-tes-part='list'] {
+      background-image: var(--tt-decor-image, url('../../art/lunar-new-year/clouds.svg'));
+      background-position: top;
+      background-size: 2.5rem 0.25rem;
+      background-repeat: repeat-x;
+    }
+  }
+}

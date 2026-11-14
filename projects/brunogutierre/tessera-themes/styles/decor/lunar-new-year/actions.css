@@ -1,0 +1,122 @@
+/* Lunar New Year decoration: actions and display. */
+@layer tessera-themes.decor {
+  @scope ([data-tes-theme='lunar-new-year']) to ([data-tes-theme]:not([data-tes-theme='lunar-new-year'])) {
+    .tes-button:not(:where([data-tt-decor='none'], [data-tt-decor='none'] *)) {
+      --tes-button-radius: var(--tes-radius-full);
+    }
+
+    /* Buttons: a lantern on primary, a knot on secondary, hanging from the top edge. Danger stays
+       plain on purpose. */
+    .tes-button:is([data-variant='primary'], [data-variant='secondary'])::after {
+      --tt-sticker: url('../../art/lunar-new-year/lantern.svg');
+      inset-block-start: -0.85rem;
+      inset-inline-end: 0.3rem;
+      inline-size: 1.05rem;
+      block-size: 1.3rem;
+      rotate: 8deg;
+    }
+
+    .tes-button[data-variant='secondary']::after {
+      --tt-sticker: url('../../art/lunar-new-year/knot.svg');
+      inline-size: 0.8rem;
+      rotate: -8deg;
+    }
+
+    .tes-button:is([data-size='sm'], [data-icon-only])::after {
+      inset-block-start: -0.6rem;
+      inline-size: 0.8rem;
+      block-size: 1rem;
+    }
+
+    /* Badges: a coin on warnings, fireworks on the other solid badges */
+    .tes-badge:is([data-variant='solid'], [data-tone='warning'])::after {
+      --tt-sticker: url('../../art/lunar-new-year/fireworks.svg');
+      inset-block-start: -0.6rem;
+      inset-inline-end: 0;
+      inline-size: 0.95rem;
+      block-size: 0.95rem;
+    }
+
+    .tes-badge[data-tone='warning']::after {
+      --tt-sticker: url('../../art/lunar-new-year/coin.svg');
+      rotate: 15deg;
+    }
+
+    /* Tags: a knot hanging on the start corner */
+    .tes-tag::before {
+      --tt-sticker: url('../../art/lunar-new-year/knot.svg');
+      inset-block-start: -0.6rem;
+      inset-inline-start: -0.35rem;
+      inline-size: 0.7rem;
+      block-size: 1.1rem;
+      rotate: -12deg;
+    }
+
+    /* Avatars: a knot with a tassel hanging on the top-start corner, sized with the avatar; higher
+       on small avatars to clear the initials */
+    .tes-avatar::after {
+      --tt-sticker: url('../../art/lunar-new-year/knot.svg');
+      inset-block-start: -30%;
+      inset-inline-start: -14%;
+      inline-size: 38%;
+      aspect-ratio: 20 / 32;
+      rotate: -14deg;
+    }
+
+    .tes-avatar[data-size='sm']::after {
+      inset-block-start: -45%;
+    }
+
+    /* Stats: fireworks above the end of the label */
+    .tes-stat > [data-tes-part='label'] {
+      inline-size: fit-content;
+    }
+
+    .tes-stat > [data-tes-part='label']::after {
+      --tt-sticker: url('../../art/lunar-new-year/fireworks.svg');
+      inset-block-start: -0.95rem;
+      inset-inline-end: 0;
+      inline-size: 1rem;
+      block-size: 1rem;
+    }
+
+    /* Spinner: a red arc on a gold track */
+    .tes-spinner > svg > [data-tes-part='track'] {
+      stroke: var(--tt-gold);
+    }
+
+    .tes-spinner > svg > [data-tes-part='arc'] {
+      stroke: var(--tt-red);
+    }
+
+    /* Progress: a striped red and gold bar on the primary tone, outlined so its end stays visible */
+    .tes-progress[data-tone='primary'] > [data-tes-part='track'] > [data-tes-part='bar'] {
+      background-image: var(--tt-decor-image, var(--tt-candy-stripe));
+      box-shadow: inset 0 0 0 1px var(--tt-red);
+    }
+
+    /* Skeleton: bones with a hint of red */
+    .tes-skeleton > [data-tes-part='bone'] {
+      background-color: color-mix(in oklch, var(--tt-red) 10%, var(--tes-color-neutral-subtle));
+    }
+
+    /*
+     * Breadcrumbs: Tessera's own separator becomes a little coin. Its "/" stays, only hidden, so the
+     * rule is limited to screens outside forced colors and to decorated subtrees.
+     */
+    @media screen and (forced-colors: none) {
+      .tes-breadcrumbs:not(:where([data-tt-decor='none'], [data-tt-decor='none'] *))
+        li
+        + li::before {
+        display: inline-block;
+        inline-size: 0.65rem;
+        block-size: 0.65rem;
+        overflow: hidden;
+        color: transparent;
+        background-color: var(--tt-gold);
+        mask: var(--tt-decor-image, url('../../art/lunar-new-year/separator-coin.svg')) center /
+          contain no-repeat;
+      }
+    }
+  }
+}

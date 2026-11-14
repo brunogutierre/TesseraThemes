@@ -18,6 +18,12 @@ export interface TtDecorRegistry {
   bunny: true;
   /** Easter card: a basket of eggs on the top edge. */
   basket: true;
+  /** Lunar New Year card: a friendly dragon peeking over the top edge. */
+  dragon: true;
+  /** Lunar New Year card: a lion-dance head peeking over the top edge. */
+  lion: true;
+  /** Lunar New Year card: a red envelope tucked on the corner. */
+  envelope: true;
 }
 export type TtDecorName = Extract<keyof TtDecorRegistry, string>;
 
