@@ -11,6 +11,11 @@ const FESTIVE_PAIRS = {
     { foreground: '--tt-pumpkin', background: '--tes-color-surface', minRatio: 3 },
     { foreground: '--tt-night', background: '--tes-color-surface', minRatio: 3 },
   ],
+  // The lilac and pink stripes must stand out from the surface.
+  easter: [
+    { foreground: '--tt-lilac', background: '--tes-color-surface', minRatio: 3 },
+    { foreground: '--tt-pink', background: '--tes-color-surface', minRatio: 3 },
+  ],
 };
 
 beforeAll(loadStyles);
