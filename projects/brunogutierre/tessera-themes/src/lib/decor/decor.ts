@@ -14,6 +14,10 @@ export interface TtDecorRegistry {
   web: true;
   /** Halloween card: a ghost peeking over the top edge. */
   ghost: true;
+  /** Easter card: a bunny peeking over the top edge. */
+  bunny: true;
+  /** Easter card: a basket of eggs on the top edge. */
+  basket: true;
 }
 export type TtDecorName = Extract<keyof TtDecorRegistry, string>;
 
